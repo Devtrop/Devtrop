@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Coming soon*/
+@keyframes blob-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(14vw, -8vh) scale(1.15);
+  }
+  66% {
+    transform: translate(-9vw, 10vh) scale(0.92);
+  }
+}
+
+@keyframes blob-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  28% {
+    transform: translate(-12vw, 9vh) scale(0.9);
+  }
+  61% {
+    transform: translate(8vw, -11vh) scale(1.18);
+  }
+  82% {
+    transform: translate(-5vw, -4vh) scale(1.02);
+  }
+}
+
+@keyframes blob-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  37% {
+    transform: translate(-15vw, -7vh) scale(1.1);
+  }
+  74% {
+    transform: translate(11vw, 6vh) scale(0.88);
+  }
+}
+
+@keyframes blob-drift-d {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  45% {
+    transform: translate(9vw, 12vh) scale(1.2);
+  }
+  70% {
+    transform: translate(-11vw, -5vh) scale(0.95);
+  }
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  88% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  100% {
+    transform: translateY(-112vh);
+    opacity: 0;
+  }
+}
+
+.blob-a {
+  animation: blob-drift-a 26s ease-in-out infinite;
+}
+
+.blob-b {
+  animation: blob-drift-b 34s ease-in-out -8s infinite;
+}
+
+.blob-c {
+  animation: blob-drift-c 40s ease-in-out -16s infinite;
+}
+
+.blob-d {
+  animation: blob-drift-d 30s ease-in-out -22s infinite;
+}
+
+.particle {
+  position: absolute;
+  bottom: -2vh;
+  border-radius: 9999px;
+  background: white;
+  animation-name: particle-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-a,
+  .blob-b,
+  .blob-c,
+  .blob-d,
+  .particle {
+    animation: none;
+  }
+
+  .particle {
+    opacity: var(--particle-opacity, 0.6);
+  }
+}
+/*Coning soon*/
