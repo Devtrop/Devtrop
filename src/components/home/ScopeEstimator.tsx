@@ -1,17 +1,13 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import {
-  ESTIMATOR_PROJECT_TYPES,
-  ESTIMATOR_SPEEDS,
-  ESTIMATOR_MATRIX,
-} from "@/data/hero";
+import { useState } from 'react'
+import { ESTIMATOR_PROJECT_TYPES, ESTIMATOR_SPEEDS, ESTIMATOR_MATRIX } from '@/data/hero'
 
 export function ScopeEstimator() {
-  const [projectType, setProjectType] = useState<string>(ESTIMATOR_PROJECT_TYPES[0]);
-  const [speed, setSpeed] = useState<string>(ESTIMATOR_SPEEDS[0]);
+  const [projectType, setProjectType] = useState<string>(ESTIMATOR_PROJECT_TYPES[0])
+  const [speed, setSpeed] = useState<string>(ESTIMATOR_SPEEDS[0])
 
-  const result = ESTIMATOR_MATRIX[projectType]?.[speed];
+  const result = ESTIMATOR_MATRIX[projectType]?.[speed]
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -36,8 +32,8 @@ export function ScopeEstimator() {
                 onClick={() => setProjectType(type)}
                 className={`text-left px-4 py-3 text-sm font-bold uppercase tracking-wide border-2 transition-colors duration-150 ${
                   projectType === type
-                    ? "bg-display text-inverse border-display"
-                    : "bg-canvas text-display border-display/20 hover:border-display"
+                    ? 'bg-display text-inverse border-display'
+                    : 'bg-canvas text-display border-display/20 hover:border-display'
                 }`}
               >
                 {type}
@@ -61,8 +57,8 @@ export function ScopeEstimator() {
                 onClick={() => setSpeed(s)}
                 className={`flex-1 px-4 py-3 text-sm font-bold uppercase tracking-wide border-2 transition-colors duration-150 ${
                   speed === s
-                    ? "bg-display text-inverse border-display"
-                    : "bg-canvas text-display border-display/20 hover:border-display"
+                    ? 'bg-display text-inverse border-display'
+                    : 'bg-canvas text-display border-display/20 hover:border-display'
                 }`}
               >
                 {s}
@@ -74,23 +70,31 @@ export function ScopeEstimator() {
 
       {/* Output Panel */}
       <div
-        className="border-4 border-display p-6 sm:p-8 bg-subtle swiss-dots min-h-[12rem] flex flex-col justify-between"
+        className="border-2 border-display p-6 sm:p-8 bg-subtle swiss-dots min-h-48 flex flex-col justify-between"
         aria-live="polite"
       >
         {result && (
           <>
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-muted">Timeline</span>
-                <p className="text-3xl sm:text-4xl font-black text-display tracking-tighter mt-1">{result.timeline}</p>
+                <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                  Timeline
+                </span>
+                <p className="text-3xl sm:text-4xl font-black text-display tracking-tighter mt-1">
+                  {result.timeline}
+                </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t-2 border-display/20">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-muted">Squad</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                    Squad
+                  </span>
                   <p className="text-sm font-bold text-display mt-1">{result.squad}</p>
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-muted">Architecture</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                    Architecture
+                  </span>
                   <p className="text-sm font-bold text-display mt-1">{result.architecture}</p>
                 </div>
               </div>
@@ -109,7 +113,7 @@ export function ScopeEstimator() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default ScopeEstimator;
+export default ScopeEstimator

@@ -1,40 +1,57 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { SectionContainer } from "@/components/shared/layout/SectionContainer";
-import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from "./constants";
-import { Logo } from "./components/Logo";
-import { MobileDrawer } from "./components/MobileDrawer";
+import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+import { SectionContainer } from '@/components/shared/layout/SectionContainer'
+import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from './constants'
+import { Logo } from './components/Logo'
+import { MobileDrawer } from './components/MobileDrawer'
 
 export function NavbarClient() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function handleScroll() {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20)
     }
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Sync --navbar-height immediately on mount, then keep it updated
+  useEffect(() => {
+    if (!barRef.current) return
+    const setHeight = (el: Element) => {
+      document.documentElement.style.setProperty(
+        '--navbar-height',
+        `${el.getBoundingClientRect().height}px`
+      )
+    }
+    setHeight(barRef.current) // immediate — no flash
+    const ro = new ResizeObserver(([entry]) => setHeight(entry.target))
+    ro.observe(barRef.current)
+    return () => ro.disconnect()
+  }, [])
 
   return (
-    <>
+    // No overflow-hidden here — the drawer animates downward out of this container
+    <div className="relative">
       <div
+        ref={barRef}
         className={`w-full transition-all duration-150 ease-linear ${
           isScrolled
-            ? "bg-canvas border-b-4 border-display py-3"
-            : "bg-canvas border-b-2 border-display py-4"
+            ? 'bg-canvas border-b-3 border-display py-3'
+            : 'bg-canvas border-b-2 border-display py-4'
         }`}
       >
         <SectionContainer className="flex items-center justify-between">
           {/* Brand */}
           <Logo />
 
-          {/* Desktop Navigation — uppercase Swiss labels */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => (
               <Link
@@ -42,11 +59,9 @@ export function NavbarClient() {
                 href={link.href}
                 className="group relative text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
               >
-                {/* Default text */}
                 <span className="block transition-transform duration-150 ease-linear group-hover:-translate-y-full">
                   {link.label}
                 </span>
-                {/* Red hover text slides up from below */}
                 <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
                   {link.label}
                 </span>
@@ -56,13 +71,11 @@ export function NavbarClient() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {/* Availability (Optional)*/}
             <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
               <span className="h-2 w-2 bg-accent" />
               <span>{AVAILABILITY_STATUS.label}</span>
             </div>
 
-            {/* CTA — Swiss black rectangle */}
             <Link
               href={NAVBAR_CTA.href}
               className="hidden sm:inline-flex items-center justify-center bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
@@ -70,21 +83,45 @@ export function NavbarClient() {
               {NAVBAR_CTA.label}
             </Link>
 
-            {/* Mobile hamburger */}
+            {/* Hamburger → X morphing button */}
             <button
               type="button"
-              onClick={() => setIsMobileMenuOpen(true)}
+              onClick={() => setIsMobileMenuOpen((v) => !v)}
               className="flex lg:hidden h-10 w-10 items-center justify-center border-2 border-display text-display hover:bg-display hover:text-inverse transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              aria-label="Open navigation menu"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMobileMenuOpen}
             >
-              <Menu className="h-5 w-5" />
+              <span className="relative flex h-4 w-5 flex-col justify-between">
+                <span
+                  className="block h-[2px] w-full bg-current origin-center transition-transform duration-300 ease-in-out"
+                  style={{
+                    transform: isMobileMenuOpen
+                      ? 'translateY(7px) rotate(45deg)'
+                      : 'translateY(0) rotate(0deg)',
+                  }}
+                />
+                <span
+                  className="block h-[2px] w-full bg-current transition-[opacity,transform] duration-300 ease-in-out"
+                  style={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    transform: isMobileMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
+                  }}
+                />
+                <span
+                  className="block h-[2px] w-full bg-current origin-center transition-transform duration-300 ease-in-out"
+                  style={{
+                    transform: isMobileMenuOpen
+                      ? 'translateY(-7px) rotate(-45deg)'
+                      : 'translateY(0) rotate(0deg)',
+                  }}
+                />
+              </span>
             </button>
           </div>
         </SectionContainer>
       </div>
 
       <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
-    </>
-  );
+    </div>
+  )
 }
