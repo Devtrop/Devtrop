@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   className?: string;
@@ -10,18 +11,18 @@ export function Logo({ className = "", onClick }: LogoProps) {
     <Link
       href="/"
       onClick={onClick}
-      className={`group flex items-center gap-2.5 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg py-1 ${className}`}
+      className={`group flex items-center gap-3 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent py-1 ${className}`}
       aria-label="Devtrop Studio Home"
     >
-      {/* Geometric mark */}
-      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-display text-inverse font-mono font-bold text-xs tracking-tighter shadow-sm transition-transform duration-200 group-hover:scale-105">
-        <span className="text-accent text-sm mr-0.5">/</span>d
-      </span>
-
-      {/* Typography */}
-      <span className="text-xl font-bold tracking-tight text-display font-sans">
-        devtrop
-      </span>
+      {/* Image Logo */}
+      <Image
+        src="/devtrop_cropped.jpeg"
+        alt="Devtrop Logo"
+        width={220}
+        height={48}
+        className="w-auto h-7 md:h-8 hover:opacity-90 transition-opacity duration-150"
+        priority
+      />
     </Link>
   );
 }

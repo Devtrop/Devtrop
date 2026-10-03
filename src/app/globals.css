@@ -1,51 +1,132 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════
+   DEVTROP — Swiss International Typographic Style
+   Design Token System (Tailwind v4 @theme)
+   ═══════════════════════════════════════════════════════════════ */
+
 @theme {
-  /* Canvas & surfaces */
+  /* Canvas & surfaces ──────────────────────────────────────── */
   --color-canvas: #ffffff;
-  --color-subtle: #f8fafc;
-  --color-obsidian: #090d16;
+  --color-subtle: #f2f2f2;
+  --color-obsidian: #000000;
 
-  /* Text */
-  --color-display: #0f172a;
-  --color-body: #475569;
-  --color-muted: #94a3b8;
-  --color-inverse: #f8fafc;
+  /* Text ───────────────────────────────────────────────────── */
+  --color-display: #000000;
+  --color-body: #1a1a1a;
+  --color-muted: #666666;
+  --color-inverse: #ffffff;
 
-  /* Accent (single source) */
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-soft: #eff6ff;
-  --color-status: #10b981;
+  /* Accent — Swiss Red (functional signal, never decoration) ─ */
+  --color-accent: #ff3000;
+  --color-accent-hover: #cc2600;
+  --color-accent-soft: #fff5f2;
+  --color-status: #ff3000;
 
-  /* Structure */
-  --color-hairline: #e2e8f0;
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
-  --shadow-lift: 0 10px 25px -5px rgb(15 23 42 / 0.08), 0 8px 10px -6px rgb(15 23 42 / 0.04);
+  /* Structure ──────────────────────────────────────────────── */
+  --color-hairline: #000000;
+  --color-hairline-light: #e5e5e5;
 
-  /* Type */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Type ───────────────────────────────────────────────────── */
+  --font-sans: var(--font-inter);
 }
 
-:root {
-  --background: var(--color-canvas);
-  --foreground: var(--color-display);
-}
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Sticky header anchor offset (spec §4.2) */
+/* Sticky header anchor offset */
 section[id],
 div[id] {
-  scroll-margin-top: 5.5rem; /* 88px sticky navbar offset */
+  scroll-margin-top: 5rem;
 }
 
 body {
   background-color: var(--color-canvas);
   color: var(--color-body);
-  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+}
+
+/* Swiss text selection — red highlight */
+::selection {
+  background-color: #ff3000;
+  color: #ffffff;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SWISS TEXTURE PATTERNS — depth without shadows
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 24×24px grid lines — visible structure */
+.swiss-grid-pattern {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Radial dot matrix — print technique homage */
+.swiss-dots {
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+/* 45° diagonal lines — directional energy */
+.swiss-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.025) 4px,
+    rgba(0, 0, 0, 0.025) 5px
+  );
+}
+
+/* Noise texture overlay — paper grain */
+.swiss-noise {
+  position: relative;
+}
+
+.swiss-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Grid pattern specifically for dark backgrounds */
+.swiss-grid-pattern-light {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION — accessibility
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

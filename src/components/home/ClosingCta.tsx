@@ -1,1 +1,63 @@
-export {};
+import Link from "next/link";
+import { Mail } from "lucide-react";
+import { SectionContainer } from "@/components/shared/layout/SectionContainer";
+
+export function ClosingCta() {
+  return (
+    <section className="bg-display swiss-grid-pattern-light relative" id="contact">
+      <SectionContainer className="relative z-10 py-20 lg:py-28">
+        {/* Section number */}
+        <div className="flex items-center gap-3 mb-10">
+          <span className="text-accent font-black text-sm tracking-widest">09.</span>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-inverse/40">CONTACT</span>
+          <div className="flex-1 h-px bg-white/10" />
+        </div>
+
+        <div className="max-w-3xl">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">
+            READY TO TURN YOUR ROADMAP INTO{" "}
+            <span className="text-accent">PRODUCTION-GRADE</span>{" "}
+            SOFTWARE?
+          </h2>
+
+          <p className="mt-6 text-base sm:text-lg text-inverse/60 leading-relaxed max-w-xl">
+            30-minute architecture review. Direct with the lead engineer. No sales pressure. We give architecture advice even if we don&apos;t work together.
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="#contact"
+              className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
+            >
+              Book a Discovery Call
+            </Link>
+            <Link
+              href="mailto:founders@devtrop.com"
+              className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display transition-colors duration-150"
+            >
+              <Mail className="h-4 w-4" />
+              Email Founders Directly
+            </Link>
+          </div>
+
+          {/* Trust pills */}
+          <div className="mt-10 flex flex-wrap gap-4">
+            {[
+              "Direct call with the lead engineer",
+              "Mutual NDA before details",
+              "Architecture advice even if we don't work together",
+            ].map((pill) => (
+              <span key={pill} className="inline-flex items-center gap-2 text-xs text-inverse/50 uppercase tracking-wider font-medium">
+                <span className="h-1.5 w-1.5 bg-accent flex-shrink-0" />
+                {pill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </SectionContainer>
+    </section>
+  );
+}
+
+export default ClosingCta;

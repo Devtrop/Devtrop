@@ -16,7 +16,6 @@ export function NavbarClient() {
     function handleScroll() {
       setIsScrolled(window.scrollY > 20);
     }
-
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -25,53 +24,57 @@ export function NavbarClient() {
   return (
     <>
       <div
-        className={`w-full transition-all duration-200 ${
+        className={`w-full transition-all duration-150 ease-linear ${
           isScrolled
-            ? "bg-white/90 backdrop-blur-md shadow-card border-b border-hairline py-3.5"
-            : "bg-white/80 backdrop-blur-sm border-b border-hairline/60 py-4.5"
+            ? "bg-canvas border-b-4 border-display py-3"
+            : "bg-canvas border-b-2 border-display py-4"
         }`}
       >
         <SectionContainer className="flex items-center justify-between">
-          {/* Brand Logo */}
+          {/* Brand */}
           <Logo />
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation — uppercase Swiss labels */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-body hover:text-display transition-colors"
+                className="group relative text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
               >
-                {link.label}
+                {/* Default text */}
+                <span className="block transition-transform duration-150 ease-linear group-hover:-translate-y-full">
+                  {link.label}
+                </span>
+                {/* Red hover text slides up from below */}
+                <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
+                  {link.label}
+                </span>
               </Link>
             ))}
           </nav>
 
-          {/* Right Action Items */}
+          {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {/* Live Availability Status Pill */}
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-medium">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping motion-reduce:animate-none absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
+            {/* Availability */}
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
+              <span className="h-2 w-2 bg-accent" />
               <span>{AVAILABILITY_STATUS.label}</span>
             </div>
 
-            {/* Primary CTA */}
+            {/* CTA — Swiss black rectangle */}
             <Link
               href={NAVBAR_CTA.href}
-              className="hidden sm:inline-flex items-center justify-center rounded-xl bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-hover active:scale-[0.98] transition-all"
+              className="hidden sm:inline-flex items-center justify-center bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
             >
               {NAVBAR_CTA.label}
             </Link>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile hamburger */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="flex lg:hidden h-10 w-10 items-center justify-center rounded-xl border border-hairline text-body hover:text-display hover:bg-subtle transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="flex lg:hidden h-10 w-10 items-center justify-center border-2 border-display text-display hover:bg-display hover:text-inverse transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label="Open navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -81,11 +84,7 @@ export function NavbarClient() {
         </SectionContainer>
       </div>
 
-      {/* Mobile Drawer */}
-      <MobileDrawer
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
+      <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );
 }
