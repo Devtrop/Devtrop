@@ -110,7 +110,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile Navigation"
-        className="relative lg:hidden bg-canvas/95 border-b overflow-hidden"
+        className="relative lg:hidden bg-canvas overflow-hidden"
         style={{
           maxHeight: isOpen ? `${contentHeight}px` : '0px',
           transitionProperty: 'max-height',
