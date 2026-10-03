@@ -13,7 +13,7 @@ export interface ProofBuild {
 export const WORK_CONTENT = {
   sectionNumber: "03",
   sectionLabel: "WORK",
-  headline: "SOFTWARE BUILT TO BE EXAMINED",
+  headline: "WEBSITE BUILT TO BE EXAMINED",
   subhead: "Every claim below links to something you can click, fork, or load-test.",
   builds: [
     {

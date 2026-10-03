@@ -17,7 +17,7 @@ export function ClosingCta() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">
             READY TO TURN YOUR ROADMAP INTO{" "}
             <span className="text-accent">PRODUCTION-GRADE</span>{" "}
-            SOFTWARE?
+            WEBSITE?
           </h2>
 
           <p className="mt-6 text-base sm:text-lg text-inverse/60 leading-relaxed max-w-xl">

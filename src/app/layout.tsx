@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Devtrop",
   },
   description:
-    "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade software with uncompromising craftsmanship.",
+    "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade website with uncompromising craftsmanship.",
   icons: {
     icon: "/favicon.png",
   },

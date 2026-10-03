@@ -12,7 +12,7 @@ export const SITE_CONFIG: SiteConfig = {
   name: "devtrop",
   tagline: "Full-Stack Web & SaaS Engineering Studio",
   description:
-    "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade software with uncompromising craftsmanship.",
+    "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade website with uncompromising craftsmanship.",
   url: "https://devtrop.com",
   contactEmail: "founders@devtrop.com",
   githubUrl: "https://github.com/devtrop",

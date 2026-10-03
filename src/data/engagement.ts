@@ -52,7 +52,7 @@ export const WORKING_AGREEMENT = {
   commitments: [
     { number: "01", title: "Direct engineer access", description: "You talk to the people writing the code. No account managers, no relayed questions, no junior swap after signature." },
     { number: "02", title: "Weekly transparency", description: "Every week: a working staging build, a recorded walkthrough, and an updated sprint board you can open any hour of any day." },
-    { number: "03", title: "Shipping on a 14-day metronome", description: "Sprints end with software on a live URL — not status decks. If a milestone slips, you hear it before the demo, not during it." },
+    { number: "03", title: "Shipping on a 14-day metronome", description: "Sprints end with website on a live URL — not status decks. If a milestone slips, you hear it before the demo, not during it." },
     { number: "04", title: "Day-one ownership", description: "Code lands in your GitHub organization from the first commit. IP transfer at launch is a formality, because it was always yours." },
     { number: "05", title: "30-day hyper-care", description: "After launch we stay on: same engineers, priority queue, fixes for anything our code broke — included, not upsold." },
   ] satisfies WorkingCommitment[],
