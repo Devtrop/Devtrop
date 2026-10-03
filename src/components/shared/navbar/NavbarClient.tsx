@@ -8,20 +8,40 @@ import { Logo } from './components/Logo'
 import { MobileDrawer } from './components/MobileDrawer'
 
 export function NavbarClient() {
-  const [isScrolled, setIsScrolled] = useState(false)
+  // Initialise directly from the current scroll position — avoids a setState
+  // call inside an effect. The lazy initialiser runs once on mount only.
+  // typeof window guard keeps SSR safe (Next.js renders on the server too).
+  const [isScrolled, setIsScrolled] = useState(
+    () => typeof window !== 'undefined' && window.scrollY > 20
+  )
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    function handleScroll() {
-      setIsScrolled(window.scrollY > 20)
+    let rafId: number | null = null
+
+    function onScroll() {
+      // Cancel any pending frame before scheduling a new one —
+      // prevents queuing multiple reads per frame during fast scrolling.
+      if (rafId !== null) cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        // Gate setState so it only fires when the boolean actually changes —
+        // avoids re-rendering the navbar on every single scroll tick.
+        const scrolled = window.scrollY > 20
+        setIsScrolled((prev) => (prev === scrolled ? prev : scrolled))
+        rafId = null
+      })
     }
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
   }, [])
 
-  // Sync --navbar-height immediately on mount, then keep it updated
+  // Sync --navbar-height immediately on mount, then keep it updated via
+  // ResizeObserver so the MobileDrawer backdrop always starts below the bar.
   useEffect(() => {
     if (!barRef.current) return
     const setHeight = (el: Element) => {
@@ -30,23 +50,29 @@ export function NavbarClient() {
         `${el.getBoundingClientRect().height}px`
       )
     }
-    setHeight(barRef.current) // immediate — no flash
+    setHeight(barRef.current)
     const ro = new ResizeObserver(([entry]) => setHeight(entry.target))
     ro.observe(barRef.current)
     return () => ro.disconnect()
   }, [])
 
   return (
-    // No overflow-hidden here — the drawer animates downward out of this container
     <div className="relative">
-      <div
-        ref={barRef}
-        className={`w-full transition-all duration-150 ease-linear ${
-          isScrolled
-            ? 'bg-canvas border-b-3 border-display py-3'
-            : 'bg-canvas border-b-2 border-display py-4'
-        }`}
-      >
+      {/*
+        IMPORTANT: padding and border-width are fixed and never change on scroll.
+        Animating layout properties (padding, border-width, height) causes CLS
+        and the "jumpy" feeling. Only color/opacity are transitioned here.
+        The scrolled state adds a bottom shadow via opacity so the visual
+        change is GPU-composited and has zero layout impact.
+      */}
+      <div ref={barRef} className="w-full bg-canvas/95 border-b-2 border-display py-4">
+        {/* Scroll shadow — opacity only, no layout impact */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-display transition-opacity duration-200"
+          style={{ opacity: isScrolled ? 1 : 0 }}
+        />
+
         <SectionContainer className="flex items-center justify-between">
           {/* Brand */}
           <Logo />
@@ -93,7 +119,7 @@ export function NavbarClient() {
             >
               <span className="relative flex h-4 w-5 flex-col justify-between">
                 <span
-                  className="block h-[2px] w-full bg-current origin-center transition-transform duration-300 ease-in-out"
+                  className="block h-0.5 w-full bg-current origin-center transition-transform duration-300 ease-in-out"
                   style={{
                     transform: isMobileMenuOpen
                       ? 'translateY(7px) rotate(45deg)'
@@ -101,14 +127,14 @@ export function NavbarClient() {
                   }}
                 />
                 <span
-                  className="block h-[2px] w-full bg-current transition-[opacity,transform] duration-300 ease-in-out"
+                  className="block h-0.5 w-full bg-current transition-[opacity,transform] duration-300 ease-in-out"
                   style={{
                     opacity: isMobileMenuOpen ? 0 : 1,
                     transform: isMobileMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
                   }}
                 />
                 <span
-                  className="block h-[2px] w-full bg-current origin-center transition-transform duration-300 ease-in-out"
+                  className="block h-0.5 w-full bg-current origin-center transition-transform duration-300 ease-in-out"
                   style={{
                     transform: isMobileMenuOpen
                       ? 'translateY(-7px) rotate(-45deg)'
