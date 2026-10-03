@@ -18,14 +18,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   const [linksVisible, setLinksVisible] = useState(false)
-  // Height we animate to — measured from the real content
-  const [contentHeight, setContentHeight] = useState(0)
 
-  // Measure content height whenever the drawer opens
+  // Links stagger in once panel is ~40% open
   useEffect(() => {
-    if (isOpen && contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight)
-      // Links stagger in once the panel is ~40% open
+    if (isOpen) {
       const t = setTimeout(() => setLinksVisible(true), PANEL_DURATION * 0.4)
       return () => clearTimeout(t)
     } else {
@@ -60,7 +56,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', handleKeyDown)
       const t = setTimeout(
-        () => drawerRef.current?.querySelector<HTMLElement>('button, [href]')?.focus(),
+        () => drawerRef.current?.querySelector<HTMLElement>('button, [href]')?.focus({ preventScroll: true }),
         50
       )
       return () => {
@@ -101,28 +97,36 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       />
 
       {/*
-        Panel — in normal document flow, right below the navbar bar.
-        max-height: 0 → contentHeight animates the open/close.
-        overflow-hidden clips content while the height is transitioning.
+        Panel Wrapper — absolutely positioned so it doesn't push page content down.
+        overflow-hidden clips the drawer as it slides up via transform.
       */}
       <div
-        ref={drawerRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile Navigation"
-        className="relative lg:hidden bg-canvas overflow-hidden"
+        className="absolute top-full left-0 right-0 lg:hidden overflow-hidden pointer-events-none"
         style={{
-          maxHeight: isOpen ? `${contentHeight}px` : '0px',
-          transitionProperty: 'max-height',
-          transitionDuration: `${PANEL_DURATION}ms`,
-          transitionTimingFunction: isOpen
-            ? 'cubic-bezier(0.4, 0, 0.2, 1)'
-            : 'cubic-bezier(0.4, 0, 0.2, 1)',
-          zIndex: 50,
+          zIndex: 40,
+          visibility: isOpen ? 'visible' : 'hidden',
+          transitionProperty: 'visibility',
+          transitionDuration: isOpen ? '0s' : '0s',
+          transitionDelay: isOpen ? '0s' : `${PANEL_DURATION}ms`,
         }}
+        aria-hidden={!isOpen}
       >
-        {/* Inner content — always rendered so we can measure its height */}
-        <div ref={contentRef} className="px-6 pt-5 pb-8">
+        {/* Inner panel that actually animates via GPU-accelerated transform */}
+        <div
+          ref={drawerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          className="bg-canvas border-b-2 border-display shadow-xl pointer-events-auto"
+          style={{
+            transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+            transitionProperty: 'transform',
+            transitionDuration: `${PANEL_DURATION}ms`,
+            transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+        >
+          {/* Inner content */}
+          <div ref={contentRef} className="px-6 pt-5 pb-8">
           {/* Links */}
           <nav className="flex flex-col space-y-1">
             {NAV_LINKS.map((link, i) => (
@@ -164,6 +168,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

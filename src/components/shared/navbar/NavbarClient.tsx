@@ -65,7 +65,7 @@ export function NavbarClient() {
         The scrolled state adds a bottom shadow via opacity so the visual
         change is GPU-composited and has zero layout impact.
       */}
-      <div ref={barRef} className="w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
+      <div ref={barRef} className="relative z-50 w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
         {/* Scroll shadow — opacity only, no layout impact */}
         <div
           aria-hidden="true"
