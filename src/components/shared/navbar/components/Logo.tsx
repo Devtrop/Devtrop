@@ -16,7 +16,7 @@ export function Logo({ className = "", onClick }: LogoProps) {
     >
       {/* Image Logo */}
       <Image
-        src="/devtrop_cropped.jpeg"
+        src="/devtrop_logo_transparent_bg_resized.png"
         alt="Devtrop Logo"
         width={220}
         height={48}
