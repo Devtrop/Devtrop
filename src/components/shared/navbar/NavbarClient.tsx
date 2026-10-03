@@ -56,7 +56,7 @@ export function NavbarClient() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {/* Availability */}
+            {/* Availability (Optional)*/}
             <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
               <span className="h-2 w-2 bg-accent" />
               <span>{AVAILABILITY_STATUS.label}</span>
