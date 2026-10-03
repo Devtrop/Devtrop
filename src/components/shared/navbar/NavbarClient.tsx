@@ -11,34 +11,9 @@ export function NavbarClient() {
   // Initialise directly from the current scroll position — avoids a setState
   // call inside an effect. The lazy initialiser runs once on mount only.
   // typeof window guard keeps SSR safe (Next.js renders on the server too).
-  const [isScrolled, setIsScrolled] = useState(
-    () => typeof window !== 'undefined' && window.scrollY > 20
-  )
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const barRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    let rafId: number | null = null
-
-    function onScroll() {
-      // Cancel any pending frame before scheduling a new one —
-      // prevents queuing multiple reads per frame during fast scrolling.
-      if (rafId !== null) cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => {
-        // Gate setState so it only fires when the boolean actually changes —
-        // avoids re-rendering the navbar on every single scroll tick.
-        const scrolled = window.scrollY > 20
-        setIsScrolled((prev) => (prev === scrolled ? prev : scrolled))
-        rafId = null
-      })
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      if (rafId !== null) cancelAnimationFrame(rafId)
-    }
-  }, [])
 
   // Sync --navbar-height immediately on mount, then keep it updated via
   // ResizeObserver so the MobileDrawer backdrop always starts below the bar.
@@ -66,12 +41,6 @@ export function NavbarClient() {
         change is GPU-composited and has zero layout impact.
       */}
       <div ref={barRef} className="relative z-50 w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
-        {/* Scroll shadow — opacity only, no layout impact */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-display transition-opacity duration-200"
-          style={{ opacity: isScrolled ? 1 : 0 }}
-        />
 
         <SectionContainer className="flex items-center justify-between">
           {/* Brand */}
