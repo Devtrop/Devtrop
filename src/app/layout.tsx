@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
   description:
     "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade software with uncompromising craftsmanship.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
