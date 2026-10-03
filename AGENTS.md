@@ -9,9 +9,10 @@
 - **Project:** Devtrop — Full-Stack Web & SaaS Engineering Studio Homepage
 - **Framework:** Next.js 16.3.6 (App Router)
 - **UI Runtime:** React 19.2.8
-- **Styling:** Tailwind CSS v4 (`@theme` in `app/globals.css`)
+- **Styling:** Tailwind CSS v4 (`@theme` in `src/app/globals.css`)
 - **Package Manager:** `pnpm` (v11+)
 - **Language:** TypeScript 5 (Strict Mode)
+- **Directory Layout:** Canonical `src/` directory layout (per ADR 0003)
 
 ---
 
@@ -20,7 +21,8 @@
 Before modifying, creating, or designing any components, copy, or styles:
 1. **Read the Master Plan:** [`docs/HOMEPAGE_DESIGN_PLAN.md`](docs/HOMEPAGE_DESIGN_PLAN.md) is the single source of truth for section architecture, copywriting, and interaction contracts.
 2. **Execute Project Skill:** Review [`skills/devtrop-frontend-spec/SKILL.md`](skills/devtrop-frontend-spec/SKILL.md) (also at [`.agents/skills/devtrop-frontend-spec/SKILL.md`](.agents/skills/devtrop-frontend-spec/SKILL.md)).
-3. **Check Architecture Decisions:** Review [`docs/adr/`](docs/adr/) for context on why decisions were made.
+3. **Check Architecture Decisions:** Review [`docs/adr/`](docs/adr/) for context on why decisions were made (notably ADR 0001, ADR 0002, and ADR 0003).
+4. **Follow Project Structure Guide:** Review [`docs/PROJECT_STRUCTURE_GUIDE.md`](docs/PROJECT_STRUCTURE_GUIDE.md) for canonical directory and file responsibilities.
 
 ---
 
@@ -28,9 +30,9 @@ Before modifying, creating, or designing any components, copy, or styles:
 
 1. **The Honesty Standard:** Never invent fake client logos, fabricated metrics, or fictitious testimonials. We ship **Proof Builds** (Atlas & Pulse) and the **Working Agreement**.
 2. **Tailwind v4 Design Tokens:** Never inline arbitrary hex colors in component classes. Use defined theme tokens: `bg-accent`, `text-display`, `text-body`, `border-hairline`.
-3. **Decoupled Content Layer:** Do not hardcode literal marketing copy inside component JSX. All text imports from strongly typed files in `content/*.ts`.
+3. **Decoupled Content Layer:** Do not hardcode literal marketing copy inside component JSX. All text imports from strongly typed files in `src/data/*.ts`.
 4. **Server Components by Default:** Keep components server-rendered. Only add `"use client"` for active state islands (Navbar, ScopeEstimator, TechMatrix, BookACall).
-5. **Zero-LCP Script Policy:** Calendly is loaded lazily on user click via `lib/booking.ts`. Zero third-party bytes on initial page load.
+5. **Zero-LCP Script Policy:** Calendly is loaded lazily on user click via `src/lib/booking.ts`. Zero third-party bytes on initial page load.
 
 ---
 

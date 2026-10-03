@@ -103,7 +103,7 @@ Max measure for running text: `max-w-prose` (≈65ch).
 The old plan welded copy into component prompts — impossible to edit copy without touching components, and it let contradictions (§ accent color, three different testimonial casts) creep between docs. **All copy lives in typed data files; components are pure renderers.**
 
 ```
-content/
+src/data/
   site.ts          # brand, nav links, footer columns, legal, contact/calendly URLs
   hero.ts          # headline, subhead, CTAs, estimator option matrix
   proof.ts         # ecosystem badges, engineering commitments
@@ -116,7 +116,7 @@ content/
 ```
 
 Rules:
-- Every file exports `satisfies`-checked types from `content/types.ts`. A missing required field (e.g. a case study without `sourceUrl` proving the metric) is a **type error**, making fabricated content structurally visible.
+- Every file exports `satisfies`-checked types from `src/types/content.ts`. A missing required field (e.g. a case study without `sourceUrl` proving the metric) is a **type error**, making fabricated content structurally visible.
 - Components never contain literal marketing copy.
 - Metrics in data carry their provenance: `metric: { value: string; basis: 'measured' | 'contractual' | 'target'; evidence?: string }`. Only `measured` values may render inside "impact" badges; `contractual` renders under "How we work"; `target` never renders as a number-as-proof.
 
@@ -165,7 +165,7 @@ Order and structure kept from the original plan (it was sound). Copy retained wh
 
 ---
 
-### 01 — Sticky Frosted Header · `components/navigation/Navbar.tsx` *(client)*
+### 01 — Sticky Frosted Header · `src/components/shared/navbar/Navbar.tsx` *(server wrapper + client island)*
 
 - **Layout:** Container; left wordmark `devtrop` (geometric mark + `font-bold tracking-tight text-xl`); center links `Services #services · Selected Work #work · Our Process #process · Tech Stack #architecture`; right status pill + CTA.
 - **Status pill:** `● Available for new projects` — **real availability, updated by hand or from a data field. The old "Q2/Q3" hardcoded quarter is already stale at launch.**
@@ -305,7 +305,7 @@ Kept — structure is strong. 3 cards, middle highlighted `Most popular for MVPs
 
 ---
 
-### 11 — Enterprise Footer · `components/navigation/Footer.tsx` *(server)*
+### 11 — Enterprise Footer · `src/components/shared/footer/Footer.tsx` *(server)*
 
 - Kept structure: wordmark + mission tagline + 4 columns (Services / Work / Process / Company) + legal bar.
 - **Status pill change:** the old `● All Systems Operational` implies a monitored production fleet we don't operate. Launch version: `● Now booking Q4 2026 starts` (same data field as navbar availability) — or a real status link once we host client apps worth monitoring.
