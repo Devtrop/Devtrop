@@ -5,7 +5,7 @@ import { HERO_CONTENT } from "@/data/hero";
 import { ScopeEstimator } from "./ScopeEstimator";
 
 export function Hero() {
-  const { sectionNumber, sectionLabel, headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT;
+  const { headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT;
 
   return (
     <section className="relative border-b-4 border-display overflow-hidden">

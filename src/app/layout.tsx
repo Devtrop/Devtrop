@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/shared/navbar/Navbar";
 import { Footer } from "@/components/shared/footer/Footer";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import { SITE_CONFIG } from "@/data/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,15 +14,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devtrop.com"),
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
     default: "Devtrop — Full-Stack Web & SaaS Engineering Studio",
     template: "%s | Devtrop",
   },
-  description:
-    "We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade website with uncompromising craftsmanship.",
+  description: SITE_CONFIG.description,
   icons: {
     icon: "/favicon.png",
+    apple: "/favicon_512.png",
   },
 };
 

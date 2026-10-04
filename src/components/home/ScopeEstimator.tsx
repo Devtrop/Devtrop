@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ESTIMATOR_PROJECT_TYPES, ESTIMATOR_SPEEDS, ESTIMATOR_MATRIX } from '@/data/hero'
+import { openBooking } from '@/lib/booking'
 
 export function ScopeEstimator() {
   const [projectType, setProjectType] = useState<string>(ESTIMATOR_PROJECT_TYPES[0])
@@ -102,6 +103,15 @@ export function ScopeEstimator() {
 
             <button
               type="button"
+              onClick={() => {
+                openBooking({
+                  projectType,
+                  speed,
+                  estimatedTimeline: result.timeline,
+                  squad: result.squad,
+                  architecture: result.architecture,
+                })
+              }}
               className="mt-6 w-full bg-accent px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
             >
               Schedule call for this scope →

@@ -13,10 +13,11 @@ export function NavbarClient() {
   const barRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setIsMobileMenuOpen(false)
-  }, [pathname])
+  }
 
   // Sync --navbar-height via ResizeObserver so MobileDrawer backdrop always
   // starts below the bar.

@@ -1,17 +1,17 @@
+import { cn } from "@/lib/utils";
+
 interface SectionHeadingProps {
-  sectionNumber: string;
-  sectionLabel: string;
+  sectionNumber?: string;
+  sectionLabel?: string;
   headline: string;
   subhead?: string;
   id?: string;
   inverted?: boolean;
 }
 
-export function SectionHeading({ sectionNumber, sectionLabel, headline, subhead, id, inverted }: SectionHeadingProps) {
+export function SectionHeading({ headline, subhead, id, inverted }: SectionHeadingProps) {
   return (
     <div id={id} className="mb-12 lg:mb-16">
-
-
       {/* Headline */}
       <h2 className={cn(
         "text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9]",
@@ -31,8 +31,4 @@ export function SectionHeading({ sectionNumber, sectionLabel, headline, subhead,
       )}
     </div>
   );
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
 }

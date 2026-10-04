@@ -19,11 +19,19 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const contentRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
-  const [linksVisible, setLinksVisible] = useState(false)
-
   function isActive(href: string) {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(href + '/')
+  }
+
+  const [linksVisible, setLinksVisible] = useState(false)
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen)
+
+  if (prevIsOpen !== isOpen) {
+    setPrevIsOpen(isOpen)
+    if (!isOpen) {
+      setLinksVisible(false)
+    }
   }
 
   // Links stagger in once panel is ~40% open
@@ -31,8 +39,6 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     if (isOpen) {
       const t = setTimeout(() => setLinksVisible(true), PANEL_DURATION * 0.4)
       return () => clearTimeout(t)
-    } else {
-      setLinksVisible(false)
     }
   }, [isOpen])
 

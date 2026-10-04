@@ -28,6 +28,7 @@ export function TechMatrix() {
           {tabs.map((tab, i) => (
             <button
               key={tab.id}
+              id={`tab-${tab.id}`}
               type="button"
               role="tab"
               aria-selected={activeTab === tab.id}
@@ -55,7 +56,7 @@ export function TechMatrix() {
         <div
           id={`panel-${activeTabData.id}`}
           role="tabpanel"
-          aria-labelledby={activeTabData.id}
+          aria-labelledby={`tab-${activeTabData.id}`}
           className="border-2 border-t-0 border-display"
         >
           <div className="grid grid-cols-1 md:grid-cols-3">
