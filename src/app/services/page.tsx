@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/shared/layout/PageShell";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { ProcessSection } from "@/components/home/ProcessSection";
 import { TechMatrix } from "@/components/home/TechMatrix";
 import { EngagementModels } from "@/components/home/EngagementModels";
 
@@ -14,6 +15,7 @@ export default function ServicesPage() {
   return (
     <PageShell>
       <ServicesGrid />
+      <ProcessSection />
       <TechMatrix />
       <EngagementModels />
     </PageShell>

@@ -2,7 +2,7 @@ import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { PROOF_CONTENT } from '@/data/proof'
 
 export function ProofBar() {
-  const { sectionNumber, sectionLabel, badgeLabel, techBadges, commitments } = PROOF_CONTENT
+  const { badgeLabel, techBadges, commitments } = PROOF_CONTENT
 
   return (
     <section className="border-b-4 border-display bg-subtle swiss-dots relative" id="ecosystem">

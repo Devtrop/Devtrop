@@ -1,6 +1,7 @@
 import { Mail } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+import { env } from '@/lib/env'
 
 export function ClosingCta() {
   return (
@@ -28,7 +29,7 @@ export function ClosingCta() {
               Book a Discovery Call
             </a>
             <a
-              href={`mailto:${process.env.GMAIL_INFO ?? 'info.devtrop@gmail.com'}`}
+              href={`mailto:${env.GMAIL_INFO}`}
               className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display transition-colors duration-150"
             >
               <Mail className="h-4 w-4" />

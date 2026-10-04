@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { SectionHeading } from '@/components/shared/layout/SectionHeading'
@@ -190,16 +191,16 @@ export function AboutContent() {
                 Ready to build?
               </p>
               <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-inverse">
-                Let's talk about your project
+                Let&apos;s talk about your project
               </h2>
             </div>
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center gap-2 bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150 shrink-0"
             >
               Get in touch
               <ArrowUpRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </SectionContainer>
       </section>

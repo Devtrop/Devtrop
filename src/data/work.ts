@@ -25,7 +25,7 @@ export const WORK_CONTENT = {
       deliverables: ["Live demo with two seeded tenants", "Public repo", "Lighthouse trace"],
       stackTags: ["Next.js 16", "TypeScript", "PostgreSQL (RLS)", "Stripe", "Playwright"],
       demoUrl: "#work",
-      repoUrl: "https://github.com/devtrop",
+      repoUrl: "https://github.com/",
     },
     {
       category: "Real-Time Systems",
@@ -36,7 +36,7 @@ export const WORK_CONTENT = {
       deliverables: ["Live demo streaming synthetic load", "k6 load-test report", "60fps screen trace"],
       stackTags: ["React 19", "WebSockets", "Web Workers", "Canvas 2D"],
       demoUrl: "#work",
-      repoUrl: "https://github.com/devtrop",
+      repoUrl: "https://github.com/",
     },
   ] satisfies ProofBuild[],
 };
