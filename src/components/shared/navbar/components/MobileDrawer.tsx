@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from '../constants'
 
 interface MobileDrawerProps {
@@ -10,14 +11,20 @@ interface MobileDrawerProps {
 }
 
 const PANEL_DURATION = 400 // ms
-const LINK_STAGGER = 60 // ms
-const LINK_DURATION = 320 // ms
+const LINK_STAGGER = 60   // ms
+const LINK_DURATION = 320  // ms
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   const [linksVisible, setLinksVisible] = useState(false)
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname === href || pathname.startsWith(href + '/')
+  }
 
   // Links stagger in once panel is ~40% open
   useEffect(() => {
@@ -75,11 +82,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
   return (
     <>
-      {/*
-        Backdrop — fixed, starts below the navbar via --navbar-height.
-        z-index 39 keeps it under the sticky header (z-50) so the navbar
-        is never dimmed.
-      */}
+      {/* Backdrop */}
       <div
         className="fixed inset-x-0 bottom-0 lg:hidden"
         style={{
@@ -96,10 +99,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         aria-hidden="true"
       />
 
-      {/*
-        Panel Wrapper — absolutely positioned so it doesn't push page content down.
-        overflow-hidden clips the drawer as it slides up via transform.
-      */}
+      {/* Panel wrapper */}
       <div
         className="absolute top-full left-0 right-0 lg:hidden overflow-hidden pointer-events-none"
         style={{
@@ -111,7 +111,6 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         }}
         aria-hidden={!isOpen}
       >
-        {/* Inner panel that actually animates via GPU-accelerated transform */}
         <div
           ref={drawerRef}
           role="dialog"
@@ -125,50 +124,63 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          {/* Inner content */}
           <div ref={contentRef} className="px-6 pt-5 pb-8">
-          {/* Links */}
-          <nav className="flex flex-col space-y-1">
-            {NAV_LINKS.map((link, i) => (
-              <div key={link.href} className="overflow-hidden">
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  style={{
-                    transitionDelay: linksVisible
-                      ? `${i * LINK_STAGGER}ms`
-                      : `${(NAV_LINKS.length - 1 - i) * 35}ms`,
-                    transitionDuration: `${LINK_DURATION}ms`,
-                    transitionProperty: 'transform, opacity',
-                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                    transform: linksVisible ? 'translateY(0)' : 'translateY(-100%)',
-                    opacity: linksVisible ? 1 : 0,
-                    display: 'block',
-                  }}
-                  className="px-4 py-3 text-base font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-colors duration-150"
-                >
-                  {link.label}
-                </Link>
-              </div>
-            ))}
-          </nav>
+            {/* Links */}
+            <nav className="flex flex-col space-y-1">
+              {NAV_LINKS.map((link, i) => {
+                const active = isActive(link.href)
+                return (
+                  <div key={link.href} className="overflow-hidden">
+                    <Link
+                      href={link.href}
+                      onClick={onClose}
+                      aria-current={active ? 'page' : undefined}
+                      style={{
+                        transitionDelay: linksVisible
+                          ? `${i * LINK_STAGGER}ms`
+                          : `${(NAV_LINKS.length - 1 - i) * 35}ms`,
+                        transitionDuration: `${LINK_DURATION}ms`,
+                        transitionProperty: 'transform, opacity',
+                        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                        transform: linksVisible ? 'translateY(0)' : 'translateY(-100%)',
+                        opacity: linksVisible ? 1 : 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                      className={`px-4 py-3 text-base font-bold uppercase tracking-wider transition-colors duration-150 ${
+                        active
+                          ? 'bg-display text-inverse'
+                          : 'text-display hover:bg-display hover:text-inverse'
+                      }`}
+                    >
+                      {link.label}
+                      {/* Active accent dot */}
+                      {active && (
+                        <span className="h-2 w-2 bg-accent flex-shrink-0" aria-hidden="true" />
+                      )}
+                    </Link>
+                  </div>
+                )
+              })}
+            </nav>
 
-          {/* Status + CTA */}
-          <div className="pt-6 border-t-2 border-display mt-4 flex flex-col gap-4">
-            <div className="flex items-center gap-2 px-4 py-2 border-2 border-display text-xs font-bold uppercase tracking-wider w-fit">
-              <span className="h-2 w-2 bg-accent" />
-              {AVAILABILITY_STATUS.label}
+            {/* Status + CTA */}
+            <div className="pt-6 border-t-2 border-display mt-4 flex flex-col gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 border-2 border-display text-xs font-bold uppercase tracking-wider w-fit">
+                <span className="h-2 w-2 bg-accent" />
+                {AVAILABILITY_STATUS.label}
+              </div>
+              <Link
+                href={NAVBAR_CTA.href}
+                onClick={onClose}
+                className="w-full text-center bg-display px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
+              >
+                {NAVBAR_CTA.label}
+              </Link>
             </div>
-            <Link
-              href={NAVBAR_CTA.href}
-              onClick={onClose}
-              className="w-full text-center bg-display px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
-            >
-              {NAVBAR_CTA.label}
-            </Link>
           </div>
         </div>
-      </div>
       </div>
     </>
   )

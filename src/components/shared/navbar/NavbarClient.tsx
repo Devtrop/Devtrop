@@ -2,21 +2,24 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from './constants'
 import { Logo } from './components/Logo'
 import { MobileDrawer } from './components/MobileDrawer'
 
 export function NavbarClient() {
-  // Initialise directly from the current scroll position — avoids a setState
-  // call inside an effect. The lazy initialiser runs once on mount only.
-  // typeof window guard keeps SSR safe (Next.js renders on the server too).
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const barRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
-  // Sync --navbar-height immediately on mount, then keep it updated via
-  // ResizeObserver so the MobileDrawer backdrop always starts below the bar.
+  // Sync --navbar-height via ResizeObserver so MobileDrawer backdrop always
+  // starts below the bar.
   useEffect(() => {
     if (!barRef.current) return
     const setHeight = (el: Element) => {
@@ -31,37 +34,52 @@ export function NavbarClient() {
     return () => ro.disconnect()
   }, [])
 
+  /**
+   * Active check: exact match for "/" home; prefix match for all others so
+   * nested routes (e.g. /services/something) still light up the parent link.
+   */
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname === href || pathname.startsWith(href + '/')
+  }
+
   return (
     <div className="relative">
-      {/*
-        IMPORTANT: padding and border-width are fixed and never change on scroll.
-        Animating layout properties (padding, border-width, height) causes CLS
-        and the "jumpy" feeling. Only color/opacity are transitioned here.
-        The scrolled state adds a bottom shadow via opacity so the visual
-        change is GPU-composited and has zero layout impact.
-      */}
       <div ref={barRef} className="relative z-50 w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
-
         <SectionContainer className="flex items-center justify-between">
           {/* Brand */}
           <Logo />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group relative text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
-              >
-                <span className="block transition-transform duration-150 ease-linear group-hover:-translate-y-full">
-                  {link.label}
-                </span>
-                <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
-                  {link.label}
-                </span>
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href)
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  className="group relative pb-1 text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
+                >
+                  {/* Text flip on hover */}
+                  <span className={`block transition-transform duration-150 ease-linear ${active ? '' : 'group-hover:-translate-y-full'}`}>
+                    {link.label}
+                  </span>
+                  {!active && (
+                    <span className="absolute inset-0 flex items-center text-accent translate-y-full transition-transform duration-150 ease-linear group-hover:translate-y-0">
+                      {link.label}
+                    </span>
+                  )}
+                  {/* Active indicator — Swiss accent red bar under the label */}
+                  {active && (
+                    <span
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-accent"
+                      aria-hidden="true"
+                    />
+                  )}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Right Actions */}

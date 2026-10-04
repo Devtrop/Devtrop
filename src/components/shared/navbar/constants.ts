@@ -1,10 +1,10 @@
 import { NavLinkItem } from "./types";
 
 export const NAV_LINKS: NavLinkItem[] = [
-  { label: "Services", href: "#services" },
-  { label: "Selected Work", href: "#work" },
-  { label: "Our Process", href: "#process" },
-  { label: "Tech Stack", href: "#architecture" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const AVAILABILITY_STATUS = {
@@ -14,5 +14,5 @@ export const AVAILABILITY_STATUS = {
 
 export const NAVBAR_CTA = {
   label: "Book a Call",
-  href: "#contact",
+  href: "/contact",
 };

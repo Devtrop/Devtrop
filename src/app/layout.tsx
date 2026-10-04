@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/shared/navbar/Navbar";
+import { Footer } from "@/components/shared/footer/Footer";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
 
 const inter = Inter({
@@ -31,7 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col font-sans bg-canvas text-body swiss-noise">
-        {children}
+        {/* Navbar lives in the root layout — never unmounts between page navigations */}
+        <Navbar />
+        <main className="flex-1 flex flex-col w-full">{children}</main>
+        <Footer />
         <WhatsAppButton />
       </body>
     </html>

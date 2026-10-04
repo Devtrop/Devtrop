@@ -37,6 +37,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* Always reserve scrollbar gutter so its appearance/disappearance never
+     shifts the layout width — eliminates the horizontal border blink on
+     page transitions caused by CLS from the scrollbar toggling. */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 /* Sticky header anchor offset */
@@ -114,6 +119,22 @@ body {
     linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE TRANSITION — fade-in on content swap
+   Prevents the hard-cut "border blink" when Next.js swaps the
+   page segment inside <main>. The animation is short (120ms) and
+   GPU-composited (opacity only) so it has zero layout impact.
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes page-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+main > * {
+  animation: page-enter 120ms ease-out both;
 }
 
 /* ═══════════════════════════════════════════════════════════════
