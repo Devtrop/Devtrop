@@ -9,7 +9,7 @@ export function Footer() {
   const gmail = env.GMAIL_INFO
 
   return (
-    <footer className="w-full bg-canvas border-t-4 border-display">
+    <footer className="w-full bg-canvas border-t-2 border-display">
       <SectionContainer className="py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Brand Column */}
