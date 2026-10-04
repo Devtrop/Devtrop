@@ -20,9 +20,12 @@ export function TechMatrix() {
           subhead={subhead}
         />
 
-        {/* Tab bar */}
-        <div className="flex flex-wrap border-2 border-display mb-0" role="tablist" aria-label="Technology categories">
-          {tabs.map((tab) => (
+        {/*
+          Tab bar — 2×2 grid on mobile, 4-col on desktop.
+          Borders are applied per-cell so no edge ever doubles up.
+        */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-2 border-display" role="tablist" aria-label="Technology categories">
+          {tabs.map((tab, i) => (
             <button
               key={tab.id}
               type="button"
@@ -30,11 +33,18 @@ export function TechMatrix() {
               aria-selected={activeTab === tab.id}
               aria-controls={`panel-${tab.id}`}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 min-w-[140px] px-4 py-3 text-xs font-bold uppercase tracking-wider border-r-2 border-display last:border-r-0 transition-colors duration-150 ${
+              className={[
+                "px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors duration-150",
+                // right border: left column on mobile (even), first 3 on desktop
+                i % 2 === 0 ? "border-r-2 border-display" : "",
+                "lg:border-r-0",
+                i < 3 ? "lg:border-r-2 lg:border-display" : "",
+                // bottom border: top row on mobile (0,1), none on desktop
+                i < 2 ? "border-b-2 border-display lg:border-b-0" : "",
                 activeTab === tab.id
                   ? "bg-display text-inverse"
-                  : "bg-canvas text-display hover:bg-subtle"
-              }`}
+                  : "bg-canvas text-display hover:bg-subtle",
+              ].filter(Boolean).join(" ")}
             >
               {tab.label}
             </button>
