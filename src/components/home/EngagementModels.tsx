@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { Check } from "lucide-react";
 import { SectionContainer } from "@/components/shared/layout/SectionContainer";
 import { SectionHeading } from "@/components/shared/layout/SectionHeading";
 import { ENGAGEMENT_CONTENT } from "@/data/engagement";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 export function EngagementModels() {
   const { sectionNumber, sectionLabel, headline, subhead, models } = ENGAGEMENT_CONTENT;
@@ -57,8 +57,10 @@ export function EngagementModels() {
               </div>
 
               <div className="mt-10">
-                <Link
-                  href="#contact"
+                <a
+                  href={whatsappUrl(model.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`block w-full text-center px-6 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors duration-150 ${
                     model.isPopular
                       ? "bg-accent text-inverse hover:bg-accent-hover"
@@ -66,7 +68,7 @@ export function EngagementModels() {
                   }`}
                 >
                   {model.ctaLabel}
-                </Link>
+                </a>
               </div>
             </div>
           ))}

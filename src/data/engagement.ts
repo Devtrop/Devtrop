@@ -4,6 +4,7 @@ export interface EngagementModel {
   description: string;
   highlights: string[];
   ctaLabel: string;
+  whatsappMessage: string;
   isPopular?: boolean;
 }
 
@@ -19,6 +20,7 @@ export const ENGAGEMENT_CONTENT = {
       description: "Pod integrated into your Slack/Linear/GitHub with standups & demos.",
       highlights: ["Monthly retainer, 30-day notice", "SLA response times", "Standups & sprint demos", "Full GitHub org access"],
       ctaLabel: "Deploy a Squad",
+      whatsappMessage: "Hi, I'm interested in the Dedicated Engineering Squad plan. I'd like to discuss deploying a squad for my project.",
     },
     {
       title: "Fixed-Scope Milestone Build",
@@ -26,6 +28,7 @@ export const ENGAGEMENT_CONTENT = {
       description: "RFC + PRD sign-off with milestone payments tied to verified staging demos.",
       highlights: ["6–8 week delivery window", "Milestone-based payments", "30-day warranty included", "100% IP transfer at close"],
       ctaLabel: "Scope a Project",
+      whatsappMessage: "Hi, I'm interested in the Fixed-Scope Milestone Build. I'd like to scope out an MVP project with Devtrop.",
       isPopular: true,
     },
     {
@@ -34,6 +37,7 @@ export const ENGAGEMENT_CONTENT = {
       description: "Query & bottleneck profiling, security/SOC2-readiness review, and a prioritized fix-PR roadmap.",
       highlights: ["Full codebase audit", "Prioritized fix-PR roadmap", "Executive summary", "Security/SOC2 review"],
       ctaLabel: "Request an Audit",
+      whatsappMessage: "Hi, I'm interested in the 2-Week Architecture & Code Audit. I'd like to request an audit for my codebase.",
     },
   ] satisfies EngagementModel[],
 };

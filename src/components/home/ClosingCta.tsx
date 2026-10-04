@@ -1,13 +1,14 @@
-import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
+import { whatsappUrl } from '@/lib/whatsapp'
+
+const DISCOVERY_CALL_MESSAGE =
+  "Hi, I'd like to book a 30-minute discovery call with Devtrop to discuss my project."
 
 export function ClosingCta() {
   return (
     <section className="bg-display swiss-grid-pattern-light relative" id="contact">
       <SectionContainer className="relative z-10 py-20 lg:py-28">
-
-
         <div className="max-w-3xl">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">
             READY TO TURN YOUR ROADMAP INTO <span className="text-accent">PRODUCTION-GRADE</span>{' '}
@@ -21,19 +22,21 @@ export function ClosingCta() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#contact"
+            <a
+              href={whatsappUrl(DISCOVERY_CALL_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
             >
               Book a Discovery Call
-            </Link>
-            <Link
+            </a>
+            <a
               href="mailto:info.devtrop@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display transition-colors duration-150"
             >
               <Mail className="h-4 w-4" />
               Email Founders Directly
-            </Link>
+            </a>
           </div>
 
           {/* Trust pills */}

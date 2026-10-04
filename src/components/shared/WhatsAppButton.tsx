@@ -5,10 +5,9 @@
  * Server Component — no client JS required.
  */
 
-const WHATSAPP_NUMBER = '8801897208737' // E.164 without leading +
-const WHATSAPP_MESSAGE = "Hi, I'd like to discuss a project with Devtrop."
+import { whatsappUrl } from "@/lib/whatsapp";
 
-const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+const whatsappHref = whatsappUrl("Hi, I'd like to discuss a project with Devtrop.")
 
 export default function WhatsAppButton() {
   return (
