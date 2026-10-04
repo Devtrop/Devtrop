@@ -1,11 +1,23 @@
-const WHATSAPP_NUMBER = "8801897208737"; // E.164 without leading +
-
 /**
- * Build a wa.me URL with an optional pre-filled message.
- * Used by WhatsAppButton, EngagementModels, and ClosingCta.
+ * src/lib/whatsapp.ts
+ *
+ * WhatsApp URL builder and pre-filled messages.
+ * Reads number and message copy from validated env — server-side only.
  */
+import { env } from "./env";
+
+/** Build a wa.me deep-link with an optional pre-filled message. */
 export function whatsappUrl(message?: string): string {
-  const base = `https://wa.me/${WHATSAPP_NUMBER}`;
+  const base = `https://wa.me/${env.WHATSAPP}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
 }
+
+/** Pre-filled messages keyed by CTA context. */
+export const WHATSAPP_MESSAGES = {
+  default: env.WHATSAPP_MSG_DEFAULT,
+  discovery: env.WHATSAPP_MSG_DISCOVERY,
+  squad: env.WHATSAPP_MSG_SQUAD,
+  milestone: env.WHATSAPP_MSG_MILESTONE,
+  audit: env.WHATSAPP_MSG_AUDIT,
+} as const;

@@ -5,9 +5,9 @@
  * Server Component — no client JS required.
  */
 
-import { whatsappUrl } from "@/lib/whatsapp";
+import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
-const whatsappHref = whatsappUrl("Hi, I'd like to discuss a project with Devtrop.")
+const whatsappHref = whatsappUrl(WHATSAPP_MESSAGES.default)
 
 export default function WhatsAppButton() {
   return (

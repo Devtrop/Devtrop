@@ -2,7 +2,14 @@ import { Check } from "lucide-react";
 import { SectionContainer } from "@/components/shared/layout/SectionContainer";
 import { SectionHeading } from "@/components/shared/layout/SectionHeading";
 import { ENGAGEMENT_CONTENT } from "@/data/engagement";
-import { whatsappUrl } from "@/lib/whatsapp";
+import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
+
+// Maps model index to the correct env message key
+const MODEL_MESSAGES = [
+  WHATSAPP_MESSAGES.squad,
+  WHATSAPP_MESSAGES.milestone,
+  WHATSAPP_MESSAGES.audit,
+] as const;
 
 export function EngagementModels() {
   const { sectionNumber, sectionLabel, headline, subhead, models } = ENGAGEMENT_CONTENT;
@@ -49,7 +56,7 @@ export function EngagementModels() {
                 <ul className="space-y-3">
                   {model.highlights.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-xs font-medium">
-                      <Check className={`h-4 w-4 flex-shrink-0 mt-0.5 ${model.isPopular ? "text-accent" : "text-accent"}`} />
+                      <Check className={`h-4 w-4 flex-shrink-0 mt-0.5 text-accent`} />
                       <span className={model.isPopular ? "text-inverse/80" : "text-display/80"}>{item}</span>
                     </li>
                   ))}
@@ -58,7 +65,7 @@ export function EngagementModels() {
 
               <div className="mt-10">
                 <a
-                  href={whatsappUrl(model.whatsappMessage)}
+                  href={whatsappUrl(MODEL_MESSAGES[i])}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`block w-full text-center px-6 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors duration-150 ${

@@ -3,9 +3,10 @@ import Image from 'next/image'
 import { Mail, ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { FOOTER_COLUMNS, FOOTER_AVAILABILITY } from './footerData'
+import { env } from '@/lib/env'
 
 export function Footer() {
-  const gmail = 'info.devtrop@gmail.com'
+  const gmail = env.GMAIL_INFO
 
   return (
     <footer className="w-full bg-canvas border-t-4 border-display">

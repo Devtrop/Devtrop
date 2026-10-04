@@ -1,9 +1,6 @@
 import { Mail } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { whatsappUrl } from '@/lib/whatsapp'
-
-const DISCOVERY_CALL_MESSAGE =
-  "Hi, I'd like to book a 30-minute discovery call with Devtrop to discuss my project."
+import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
 export function ClosingCta() {
   return (
@@ -23,7 +20,7 @@ export function ClosingCta() {
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href={whatsappUrl(DISCOVERY_CALL_MESSAGE)}
+              href={whatsappUrl(WHATSAPP_MESSAGES.discovery)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
@@ -31,7 +28,7 @@ export function ClosingCta() {
               Book a Discovery Call
             </a>
             <a
-              href="mailto:info.devtrop@gmail.com"
+              href={`mailto:${process.env.GMAIL_INFO ?? 'info.devtrop@gmail.com'}`}
               className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display transition-colors duration-150"
             >
               <Mail className="h-4 w-4" />
