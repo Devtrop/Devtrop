@@ -25,7 +25,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'Atlas Cloud Platform', href: '#work' },
       { label: 'Pulse Real-Time Engine', href: '#work' },
       { label: 'Architecture RFCs', href: '#architecture' },
-      { label: 'Open Source Proofs', href: 'https://github.com/devtrop', isExternal: true },
     ],
   },
   {

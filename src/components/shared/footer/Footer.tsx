@@ -44,16 +44,6 @@ export function Footer() {
                 <Mail className="h-4 w-4" />
                 <span>{gmail}</span>
               </Link>
-              {/* <a
-                href="https://github.com/devtrop"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-display transition-colors duration-150"
-              >
-                <GitHubIcon className="h-4 w-4" />
-                <span>github.com/devtrop</span>
-                <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
-              </a> */}
             </div>
           </div>
 
