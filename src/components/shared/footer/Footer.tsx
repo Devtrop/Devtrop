@@ -2,8 +2,43 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { FOOTER_COLUMNS, FOOTER_AVAILABILITY } from './footerData'
+import { FOOTER_COLUMNS, FOOTER_AVAILABILITY, SOCIAL_LINKS, type SocialLink } from './footerData'
 import { env } from '@/lib/env'
+
+/* ─── Inline SVG icons (no bundle bloat) ─────────────────── */
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  )
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  )
+}
+
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  )
+}
+
+function SocialIcon({ platform, className }: { platform: SocialLink['platform']; className?: string }) {
+  if (platform === 'facebook') return <FacebookIcon className={className} />
+  if (platform === 'instagram') return <InstagramIcon className={className} />
+  return <LinkedInIcon className={className} />
+}
 
 export function Footer() {
   const gmail = env.GMAIL_INFO
@@ -44,6 +79,22 @@ export function Footer() {
                 <Mail className="h-4 w-4" />
                 <span>{gmail}</span>
               </Link>
+            </div>
+
+            {/* Social Links */}
+            <div className="mt-6 flex items-center gap-1">
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
+                  className="group inline-flex items-center justify-center w-9 h-9 border-2 border-display text-display hover:bg-display hover:text-inverse transition-colors duration-150"
+                >
+                  <SocialIcon platform={social.platform} className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
