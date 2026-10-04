@@ -1,11 +1,12 @@
-import Link from "next/link";
-import { ArrowDown } from "lucide-react";
-import { SectionContainer } from "@/components/shared/layout/SectionContainer";
-import { HERO_CONTENT } from "@/data/hero";
-import { ScopeEstimator } from "./ScopeEstimator";
+import { ArrowDown } from 'lucide-react'
+import Link from 'next/link'
+import { SectionContainer } from '@/components/shared/layout/SectionContainer'
+import { HERO_CONTENT } from '@/data/hero'
+import { ScopeEstimator } from './ScopeEstimator'
+import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
 export function Hero() {
-  const { headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT;
+  const { headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT
 
   return (
     <section className="relative border-b-4 border-display overflow-hidden">
@@ -14,7 +15,6 @@ export function Hero() {
 
       <SectionContainer className="relative z-10 py-16 lg:py-24">
         {/* Section number */}
-
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left — Massive Typography */}
@@ -25,8 +25,8 @@ export function Hero() {
                   key={word}
                   className={`block font-black uppercase leading-[0.85] tracking-tighter ${
                     i === 1
-                      ? "text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-accent"
-                      : "text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-display"
+                      ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-accent'
+                      : 'text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-display'
                   }`}
                 >
                   {word}
@@ -41,13 +41,15 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              {/* Primary — Swiss black rectangle */}
-              <Link
-                href={primaryCta.href}
+              {/* Primary — red, WhatsApp, matches ClosingCta */}
+              <a
+                href={whatsappUrl(WHATSAPP_MESSAGES.discovery)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
               >
                 {primaryCta.label}
-              </Link>
+              </a>
 
               {/* Secondary */}
               <Link
@@ -95,7 +97,7 @@ export function Hero() {
         </div>
       </SectionContainer>
     </section>
-  );
+  )
 }
 
-export default Hero;
+export default Hero

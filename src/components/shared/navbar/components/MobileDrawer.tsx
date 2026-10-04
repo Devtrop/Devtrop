@@ -11,8 +11,8 @@ interface MobileDrawerProps {
 }
 
 const PANEL_DURATION = 400 // ms
-const LINK_STAGGER = 60   // ms
-const LINK_DURATION = 320  // ms
+const LINK_STAGGER = 60 // ms
+const LINK_DURATION = 320 // ms
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null)
@@ -69,7 +69,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown)
       const t = setTimeout(
-        () => drawerRef.current?.querySelector<HTMLElement>('button, [href]')?.focus({ preventScroll: true }),
+        () =>
+          drawerRef.current
+            ?.querySelector<HTMLElement>('button, [href]')
+            ?.focus({ preventScroll: true }),
         50
       )
       return () => {
@@ -170,10 +173,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
             {/* Status + CTA */}
             <div className="pt-6 border-t-2 border-display mt-4 flex flex-col gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 border-2 border-display text-xs font-bold uppercase tracking-wider w-fit">
-                <span className="h-2 w-2 bg-accent" />
-                {AVAILABILITY_STATUS.label}
-              </div>
+              {/* <div className="flex items-center gap-2 px-4 py-2 border-2 border-display text-xs font-bold uppercase tracking-wider w-fit"> */}
+              {/* <span className="h-2 w-2 bg-accent" /> */}
+              {/* {AVAILABILITY_STATUS.label} */}
+              {/* </div> */}
               <Link
                 href={NAVBAR_CTA.href}
                 onClick={onClose}

@@ -10,7 +10,7 @@ export function Footer() {
 
   return (
     <footer className="w-full bg-canvas border-t-2 border-display">
-      <SectionContainer className="py-16 lg:py-20">
+      <SectionContainer className="pt-16 lg:pt-20 pb-6 lg:pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col items-start">
@@ -106,14 +106,14 @@ export function Footer() {
         {/* Legal bar */}
         <div className="mt-14 pt-6 border-t-2 border-display flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-muted font-medium tracking-wider">
-            &copy; {new Date().getFullYear()} Devtrop
+            &copy; {new Date().getFullYear()} devtrop
           </p>
 
           {/* Availability */}
-          <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
+          {/* <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
             <span className="h-2 w-2 bg-accent" />
             <span>{FOOTER_AVAILABILITY.label}</span>
-          </div>
+          </div> */}
         </div>
       </SectionContainer>
     </footer>

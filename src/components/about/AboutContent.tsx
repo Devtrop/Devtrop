@@ -156,14 +156,16 @@ export function AboutContent() {
               <div
                 key={pillar.label}
                 className={[
-                  'p-8 border-display',
+                  'p-4 md:p-8 border-display',
                   // Mobile (2-col): bottom border only on row 1 (indices 0 & 1)
                   i < 2 ? 'border-b-2' : '',
                   // Mobile (2-col): right border on left column (even indices)
                   i % 2 === 0 ? 'border-r-2' : '',
                   // Desktop (4-col): no bottom borders, right border on all but last
                   i < STACK_PILLARS.length - 1 ? 'lg:border-r-2 lg:border-b-0' : 'lg:border-r-0',
-                ].filter(Boolean).join(' ')}
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
               >
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-display mb-5 pb-3 border-b-2 border-display">
                   {pillar.label}

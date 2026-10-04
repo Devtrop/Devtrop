@@ -25,12 +25,18 @@ export default function WhatsAppButton() {
         group
       "
     >
-      <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={48} height={48} />
+      <Image
+        src="/icons/whatsapp.svg"
+        alt="WhatsApp"
+        width={48}
+        height={48}
+        className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_6px_18px_rgba(0,0,0,0.35)]"
+      />
 
       {/* Tooltip label */}
       <span
         className="
-          absolute right-16
+          absolute right-16 hover:text-accent
           whitespace-nowrap
           bg-obsidian border border-hairline
           text-inverse text-xs font-medium tracking-wide uppercase

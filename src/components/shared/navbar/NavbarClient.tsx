@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from './constants'
+import { NAV_LINKS, NAVBAR_CTA } from './constants'
 import { Logo } from './components/Logo'
 import { MobileDrawer } from './components/MobileDrawer'
 
@@ -63,7 +63,9 @@ export function NavbarClient() {
                   className="group relative pb-1 text-xs font-bold uppercase tracking-[0.15em] text-display overflow-hidden"
                 >
                   {/* Text flip on hover */}
-                  <span className={`block transition-transform duration-150 ease-linear ${active ? '' : 'group-hover:-translate-y-full'}`}>
+                  <span
+                    className={`block transition-transform duration-150 ease-linear ${active ? '' : 'group-hover:-translate-y-full'}`}
+                  >
                     {link.label}
                   </span>
                   {!active && (
@@ -85,14 +87,14 @@ export function NavbarClient() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
-              <span className="h-2 w-2 bg-accent" />
-              <span>{AVAILABILITY_STATUS.label}</span>
-            </div>
+            {/* <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display"> */}
+            {/* <span className="h-2 w-2 bg-accent" /> */}
+            {/* <span>{AVAILABILITY_STATUS.label}</span> */}
+            {/* </div> */}
 
             <Link
               href={NAVBAR_CTA.href}
-              className="hidden sm:inline-flex items-center justify-center bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
+              className="hidden sm:inline-flex items-center justify-center bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
             >
               {NAVBAR_CTA.label}
             </Link>
