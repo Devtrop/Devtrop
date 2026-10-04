@@ -15,7 +15,6 @@ export function Hero() {
       <SectionContainer className="relative z-10 py-16 lg:py-24">
         {/* Section number */}
         <div className="flex items-center gap-3 mb-10 lg:mb-14">
-          <span className="text-accent font-black text-sm tracking-widest">{sectionNumber}.</span>
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted">{sectionLabel}</span>
           <div className="flex-1 h-px bg-black/10" />
         </div>
