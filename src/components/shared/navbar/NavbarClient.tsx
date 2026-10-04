@@ -8,7 +8,11 @@ import { NAV_LINKS, NAVBAR_CTA } from './constants'
 import { Logo } from './components/Logo'
 import { MobileDrawer } from './components/MobileDrawer'
 
-export function NavbarClient() {
+interface NavbarClientProps {
+  bookACallHref: string
+}
+
+export function NavbarClient({ bookACallHref }: NavbarClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const barRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
@@ -92,12 +96,14 @@ export function NavbarClient() {
             {/* <span>{AVAILABILITY_STATUS.label}</span> */}
             {/* </div> */}
 
-            <Link
-              href={NAVBAR_CTA.href}
+            <a
+              href={bookACallHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center justify-center bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
             >
               {NAVBAR_CTA.label}
-            </Link>
+            </a>
 
             {/* Hamburger → X morphing button */}
             <button
@@ -137,7 +143,7 @@ export function NavbarClient() {
         </SectionContainer>
       </div>
 
-      <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} bookACallHref={bookACallHref} />
     </>
   )
 }

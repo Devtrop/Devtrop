@@ -22,6 +22,7 @@ const envSchema = z.object({
   WHATSAPP_MSG_SQUAD: z.string().min(1),
   WHATSAPP_MSG_MILESTONE: z.string().min(1),
   WHATSAPP_MSG_AUDIT: z.string().min(1),
+  WHATSAPP_MSG_BOOK_A_CALL: z.string().min(1),
 });
 
 function validateEnv() {

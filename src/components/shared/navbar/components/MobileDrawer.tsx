@@ -3,18 +3,19 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NAV_LINKS, AVAILABILITY_STATUS, NAVBAR_CTA } from '../constants'
+import { NAV_LINKS, NAVBAR_CTA } from '../constants'
 
 interface MobileDrawerProps {
   isOpen: boolean
   onClose: () => void
+  bookACallHref: string
 }
 
 const PANEL_DURATION = 400 // ms
 const LINK_STAGGER = 60 // ms
 const LINK_DURATION = 320 // ms
 
-export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+export function MobileDrawer({ isOpen, onClose, bookACallHref }: MobileDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
@@ -162,9 +163,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     >
                       {link.label}
                       {/* Active accent dot */}
-                      {active && (
-                        <span className="h-2 w-2 bg-accent flex-shrink-0" aria-hidden="true" />
-                      )}
+                      {active && <span className="h-2 w-2 bg-accent shrink-0" aria-hidden="true" />}
                     </Link>
                   </div>
                 )
@@ -177,13 +176,15 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* <span className="h-2 w-2 bg-accent" /> */}
               {/* {AVAILABILITY_STATUS.label} */}
               {/* </div> */}
-              <Link
-                href={NAVBAR_CTA.href}
+              <a
+                href={bookACallHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={onClose}
-                className="w-full text-center bg-display px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
+                className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
               >
                 {NAVBAR_CTA.label}
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -20,4 +20,5 @@ export const WHATSAPP_MESSAGES = {
   squad: env.WHATSAPP_MSG_SQUAD,
   milestone: env.WHATSAPP_MSG_MILESTONE,
   audit: env.WHATSAPP_MSG_AUDIT,
+  bookACall: env.WHATSAPP_MSG_BOOK_A_CALL,
 } as const;
