@@ -43,7 +43,7 @@ const VALUES = [
 
 const STACK_PILLARS = [
   { label: 'Frontend', items: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'] },
-  { label: 'Backend', items: ['Node.js', 'PostgreSQL', 'Redis', 'REST / GraphQL'] },
+  { label: 'Backend', items: ['Express.js', 'Nest.js', 'PostgreSQL', 'Redis'] },
   { label: 'Infrastructure', items: ['Vercel', 'AWS', 'Docker', 'GitHub Actions'] },
   { label: 'Tooling', items: ['Vitest', 'Playwright', 'Sentry', 'Stripe'] },
 ]
@@ -162,7 +162,7 @@ export function AboutContent() {
                 <ul className="space-y-2.5">
                   {pillar.items.map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-muted">
-                      <span className="h-1.5 w-1.5 bg-accent flex-shrink-0" />
+                      <span className="h-1.5 w-1.5 bg-accent shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -187,7 +187,7 @@ export function AboutContent() {
             </div>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150 flex-shrink-0"
+              className="inline-flex items-center gap-2 bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150 shrink-0"
             >
               Get in touch
               <ArrowUpRight className="h-4 w-4" />

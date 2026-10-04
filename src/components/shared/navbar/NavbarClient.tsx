@@ -44,8 +44,8 @@ export function NavbarClient() {
   }
 
   return (
-    <div className="relative">
-      <div ref={barRef} className="relative z-50 w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
+    <>
+      <div ref={barRef} className="w-full bg-canvas border-b-2 md:border-b-3 border-display py-4">
         <SectionContainer className="flex items-center justify-between">
           {/* Brand */}
           <Logo />
@@ -135,6 +135,6 @@ export function NavbarClient() {
       </div>
 
       <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
-    </div>
+    </>
   )
 }

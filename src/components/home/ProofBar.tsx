@@ -8,12 +8,7 @@ export function ProofBar() {
     <section className="border-b-4 border-display bg-subtle swiss-dots relative" id="ecosystem">
       <SectionContainer className="relative z-10 py-16 lg:py-20">
         {/* Section number */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted">
-            {sectionLabel}
-          </span>
-          <div className="flex-1 h-px bg-black/10" />
-        </div>
+
 
         {/* Badge label */}
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted mb-8">{badgeLabel}</p>

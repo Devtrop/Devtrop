@@ -36,7 +36,8 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     }
   }, [isOpen])
 
-  // Keyboard trap & body scroll lock
+  // Keyboard trap only — no body scroll lock since the drawer is fixed
+  // and locking body overflow causes the sticky navbar to jump to top.
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
@@ -60,7 +61,6 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       }
     }
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', handleKeyDown)
       const t = setTimeout(
         () => drawerRef.current?.querySelector<HTMLElement>('button, [href]')?.focus({ preventScroll: true }),
@@ -68,14 +68,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       )
       return () => {
         clearTimeout(t)
-        document.body.style.overflow = ''
         window.removeEventListener('keydown', handleKeyDown)
       }
-    } else {
-      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = ''
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [isOpen, onClose])
@@ -93,20 +89,21 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           transitionProperty: 'opacity',
           transitionDuration: `${PANEL_DURATION}ms`,
           transitionTimingFunction: 'ease-in-out',
-          zIndex: 39,
+          zIndex: 48,
         }}
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Panel wrapper */}
+      {/* Panel wrapper — fixed, sits just below the sticky navbar */}
       <div
-        className="absolute top-full left-0 right-0 lg:hidden overflow-hidden pointer-events-none"
+        className="fixed inset-x-0 lg:hidden overflow-hidden pointer-events-none"
         style={{
-          zIndex: 40,
+          top: 'var(--navbar-height, 64px)',
+          zIndex: 49,
           visibility: isOpen ? 'visible' : 'hidden',
           transitionProperty: 'visibility',
-          transitionDuration: isOpen ? '0s' : '0s',
+          transitionDuration: '0s',
           transitionDelay: isOpen ? '0s' : `${PANEL_DURATION}ms`,
         }}
         aria-hidden={!isOpen}

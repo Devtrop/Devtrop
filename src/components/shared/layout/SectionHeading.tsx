@@ -10,13 +10,7 @@ interface SectionHeadingProps {
 export function SectionHeading({ sectionNumber, sectionLabel, headline, subhead, id, inverted }: SectionHeadingProps) {
   return (
     <div id={id} className="mb-12 lg:mb-16">
-      {/* Section eyebrow */}
-      <div className="flex items-center gap-3 mb-6">
-        <span className={cn("text-xs font-bold uppercase tracking-[0.2em]", inverted ? "text-inverse/60" : "text-muted")}>
-          {sectionLabel}
-        </span>
-        <div className={cn("flex-1 h-px", inverted ? "bg-white/10" : "bg-black/10")} />
-      </div>
+
 
       {/* Headline */}
       <h2 className={cn(

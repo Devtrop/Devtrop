@@ -6,13 +6,7 @@ export function ClosingCta() {
   return (
     <section className="bg-display swiss-grid-pattern-light relative" id="contact">
       <SectionContainer className="relative z-10 py-20 lg:py-28">
-        {/* Section eyebrow */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-inverse/40">
-            CONTACT
-          </span>
-          <div className="flex-1 h-px bg-white/10" />
-        </div>
+
 
         <div className="max-w-3xl">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">
