@@ -177,7 +177,7 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
           fill="currentColor"
           aria-hidden="true"
           className={`
-            w-7 h-7 text-inverse absolute inset-0 m-auto
+            w-8 h-8 text-inverse absolute inset-0 m-auto
             transition-all duration-200
             ${open ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'}
           `}
