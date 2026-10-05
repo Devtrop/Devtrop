@@ -139,7 +139,6 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
                 bg-canvas border border-hairline
                 hover:border-accent hover:bg-accent-soft
                 transition-all duration-200
-                hover:scale-110
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
               "
             >
