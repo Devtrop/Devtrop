@@ -135,7 +135,7 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
               tabIndex={open ? 0 : -1}
               className="
                 flex items-center justify-center
-                w-12 h-12
+                w-14 h-14
                 bg-canvas border border-hairline
                 hover:border-accent hover:bg-accent-soft
                 transition-all duration-200
@@ -146,9 +146,9 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
               <Image
                 src={channel.icon}
                 alt={channel.label}
-                width={24}
-                height={24}
-                className="w-6 h-6"
+                width={32}
+                height={32}
+                className="w-8 h-8"
               />
             </a>
           </div>
@@ -196,7 +196,7 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
           fill="currentColor"
           aria-hidden="true"
           className={`
-            w-5 h-5 text-inverse absolute inset-0 m-auto
+            w-7 h-7 text-inverse absolute inset-0 m-auto
             transition-all duration-200
             ${open ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'}
           `}
