@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/shared/navbar/Navbar'
 import { Footer } from '@/components/shared/footer/Footer'
-import WhatsAppButton from '@/components/shared/WhatsAppButton'
+import ChatHub from '@/components/shared/ChatHub'
 import { SITE_CONFIG } from '@/data/site'
+import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -150,7 +151,10 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 flex flex-col w-full">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <ChatHub
+            whatsappHref={whatsappUrl(WHATSAPP_MESSAGES.default)}
+            contactEmail={SITE_CONFIG.contactEmail}
+          />
       </body>
     </html>
   )
