@@ -6,13 +6,13 @@ import { WorkingAgreement } from '@/components/home/WorkingAgreement'
 export const metadata: Metadata = {
   title: 'Work',
   description:
-    'Proof builds from Devtrop — Atlas multi-tenant SaaS core with Postgres RLS and Stripe billing, and Pulse real-time edge telemetry rendering 10k events/sec. Every claim links to something you can fork or load-test.',
+    'Live builds from Devtrop: Uparzo multi-tenant e-commerce SaaS, Feletrip hotel booking marketplace, and Biponiq multi-vendor storefront builder. Every claim links to a production site you can open right now.',
   keywords: [
-    'Devtrop proof builds',
-    'multi-tenant SaaS example',
-    'Next.js SaaS case study',
-    'real-time dashboard React',
-    'open source SaaS starter',
+    'multi-tenant e-commerce SaaS',
+    'Uparzo case study',
+    'Feletrip hotel booking platform',
+    'Next.js marketplace portfolio',
+    'Prisma PostgreSQL SaaS',
     'web app portfolio',
     'software engineering case study',
   ],
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
     canonical: 'https://devtrop.com/work',
   },
   openGraph: {
-    title: 'Real Builds. Real Code. Fork It, Load-Test It, Ship It — Devtrop',
+    title: 'Real Builds, Running in Production — Devtrop',
     description:
-      'Atlas: multi-tenant SaaS with Postgres RLS & Stripe. Pulse: real-time canvas rendering 10k events/sec. Every claim is verifiable.',
+      'Uparzo: multi-tenant e-commerce SaaS with custom domains and subscription billing. Feletrip: hotel booking marketplace with vendor payouts. Both live.',
     url: 'https://devtrop.com/work',
-    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Devtrop Proof Builds' }],
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Devtrop Live Builds' }],
   },
   twitter: {
-    title: 'Real Builds. Real Code. Fork It, Load-Test It, Ship It — Devtrop',
+    title: 'Real Builds, Running in Production — Devtrop',
     description:
-      'Atlas: multi-tenant SaaS with Postgres RLS & Stripe. Pulse: 10k events/sec real-time canvas. Fork them, load-test them.',
+      'Uparzo: multi-tenant e-commerce SaaS. Feletrip: hotel booking marketplace with vendor payouts. Open both in a new tab.',
     images: ['/og-default.png'],
   },
 }

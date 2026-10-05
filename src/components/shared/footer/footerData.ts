@@ -22,8 +22,8 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Selected Work',
     links: [
-      { label: 'Atlas Cloud Platform', href: '/#work' },
-      { label: 'Pulse Real-Time Engine', href: '/#work' },
+      { label: 'Uparzo: E-Commerce SaaS', href: 'https://uparzo.com', isExternal: true },
+      { label: 'Feletrip: Booking Marketplace', href: 'https://www.feletrip.com', isExternal: true },
       { label: 'Architecture RFCs', href: '/#architecture' },
     ],
   },

@@ -51,7 +51,7 @@ export default function HomePage() {
       <Hero />
       <ProofBar />
       <ServicesGrid />
-      <CaseStudies />
+      <CaseStudies featuredOnly />
       <ClosingCta />
     </PageShell>
   )
