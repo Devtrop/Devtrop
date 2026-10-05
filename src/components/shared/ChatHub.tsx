@@ -17,9 +17,11 @@ import Image from 'next/image'
 interface ChatHubProps {
   whatsappHref: string
   contactEmail: string
+  /** Pre-filled default message for Gmail (mailto body) and Messenger ref param */
+  defaultMessage: string
 }
 
-export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
+export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: ChatHubProps) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -35,36 +37,36 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
       {
         id: 'messenger',
         label: 'Messenger',
-        href: 'https://m.me/devtrop',
+        // m.me supports a `ref` param (base64url-encoded) that Messenger surfaces
+        // to the page as the conversation opener. We pass the default message as ref.
+        href: `https://m.me/devtrop?ref=${encodeURIComponent(defaultMessage)}`,
         icon: '/icons/messenger.svg',
         isExternal: true,
       },
       {
         id: 'instagram',
         label: 'Instagram',
-        href: 'https://instagram.com/devtropofficial',
+        href: 'https://instagram.com/devtrop_official',
         icon: '/icons/instagram.svg',
         isExternal: true,
       },
       {
         id: 'email',
         label: 'Email',
-        href: `mailto:${contactEmail}`,
+        // mailto: body pre-fills the compose window with the default message
+        href: `mailto:${contactEmail}?body=${encodeURIComponent(defaultMessage)}`,
         icon: '/icons/email.svg',
         isExternal: false,
       },
     ],
-    [whatsappHref, contactEmail],
+    [whatsappHref, contactEmail, defaultMessage]
   )
 
   // Close on outside click
   useEffect(() => {
     if (!open) return
     function handleClickOutside(e: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
@@ -83,27 +85,17 @@ export default function ChatHub({ whatsappHref, contactEmail }: ChatHubProps) {
   }, [open])
 
   return (
-    <div
-      ref={containerRef}
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
-    >
+    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Channel buttons — stacked above main button */}
-      <div
-        className="flex flex-col items-end gap-3"
-        aria-hidden={open ? 'false' : 'true'}
-      >
+      <div className="flex flex-col items-end gap-3" aria-hidden={open ? 'false' : 'true'}>
         {channels.map((channel, i) => (
           <div
             key={channel.id}
             className="flex items-center gap-3 group"
             style={{
-              transitionDelay: open
-                ? `${i * 45}ms`
-                : `${(channels.length - 1 - i) * 30}ms`,
+              transitionDelay: open ? `${i * 45}ms` : `${(channels.length - 1 - i) * 30}ms`,
               opacity: open ? 1 : 0,
-              transform: open
-                ? 'translateY(0) scale(1)'
-                : 'translateY(12px) scale(0.92)',
+              transform: open ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.92)',
               transition:
                 'opacity 220ms cubic-bezier(0.22,1,0.36,1), transform 220ms cubic-bezier(0.22,1,0.36,1)',
               pointerEvents: open ? 'auto' : 'none',

@@ -23,7 +23,11 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Selected Work',
     links: [
       { label: 'Uparzo: E-Commerce SaaS', href: 'https://uparzo.com', isExternal: true },
-      { label: 'Feletrip: Booking Marketplace', href: 'https://www.feletrip.com', isExternal: true },
+      {
+        label: 'Feletrip: Booking Marketplace',
+        href: 'https://www.feletrip.com',
+        isExternal: true,
+      },
       { label: 'Architecture RFCs', href: '/#architecture' },
     ],
   },
@@ -65,7 +69,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'Instagram',
-    href: 'https://instagram.com/devtropofficial',
+    href: 'https://instagram.com/devtrop_official',
     platform: 'instagram',
   },
   {

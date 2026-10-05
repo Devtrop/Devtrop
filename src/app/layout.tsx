@@ -36,6 +36,18 @@ export const metadata: Metadata = {
     'platform modernization',
     'DevOps',
     'Devtrop',
+    'Devtro',
+    'Devtr',
+    'evtrop',
+    'vtrop',
+    'trop',
+    'dvtrop',
+    'dvtrp',
+    'dev',
+    'devtrop company',
+    'devtrop agency',
+    'devtrop studio',
+    '',
   ],
 
   authors: [{ name: 'Devtrop', url: SITE_CONFIG.url }],
@@ -80,7 +92,7 @@ export const metadata: Metadata = {
   // They also feed into JSON-LD structured data below
   other: {
     'profile:facebook': 'https://facebook.com/devtrop',
-    'profile:instagram': 'https://instagram.com/devtropofficial',
+    'profile:instagram': 'https://instagram.com/devtrop_official',
     'profile:linkedin': 'https://linkedin.com/company/devtrop',
   },
 
@@ -125,7 +137,7 @@ export default function RootLayout({
     email: SITE_CONFIG.contactEmail,
     sameAs: [
       'https://facebook.com/devtrop',
-      'https://instagram.com/devtropofficial',
+      'https://instagram.com/devtrop_official',
       'https://linkedin.com/company/devtrop',
     ],
     knowsAbout: [
@@ -152,9 +164,10 @@ export default function RootLayout({
         <main className="flex-1 flex flex-col w-full">{children}</main>
         <Footer />
         <ChatHub
-            whatsappHref={whatsappUrl(WHATSAPP_MESSAGES.default)}
-            contactEmail={SITE_CONFIG.contactEmail}
-          />
+          whatsappHref={whatsappUrl(WHATSAPP_MESSAGES.default)}
+          contactEmail={SITE_CONFIG.contactEmail}
+          defaultMessage={WHATSAPP_MESSAGES.default}
+        />
       </body>
     </html>
   )
