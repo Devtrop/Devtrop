@@ -83,10 +83,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     } else {
       // Drawer is closing — move focus out of the panel immediately so
       // aria-hidden is never applied while a descendant still has focus.
-      if (
-        drawerRef.current &&
-        drawerRef.current.contains(document.activeElement)
-      ) {
+      if (drawerRef.current && drawerRef.current.contains(document.activeElement)) {
         ;(document.activeElement as HTMLElement).blur()
       }
     }
@@ -186,12 +183,11 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* {AVAILABILITY_STATUS.label} */}
               {/* </div> */}
               <button
-                type="button"
                 onClick={() => {
                   onClose()
                   openBooking()
                 }}
-                className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
+                className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0 touch-manipulation z-50"
               >
                 {NAVBAR_CTA.label}
               </button>

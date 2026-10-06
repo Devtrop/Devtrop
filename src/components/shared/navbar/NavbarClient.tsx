@@ -89,7 +89,6 @@ export function NavbarClient() {
           {/* Right Actions */}
           <div className="flex items-center gap-4">
             <button
-              type="button"
               onClick={() => openBooking()}
               className="hidden sm:inline-flex items-center justify-center bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150 cursor-pointer"
             >
@@ -98,7 +97,6 @@ export function NavbarClient() {
 
             {/* Hamburger → X morphing button */}
             <button
-              type="button"
               onClick={() => setIsMobileMenuOpen((v) => !v)}
               className="flex lg:hidden h-10 w-10 items-center justify-center border-2 border-display text-display hover:bg-display hover:text-inverse transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
