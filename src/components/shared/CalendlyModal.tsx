@@ -81,16 +81,16 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
     >
       {/* Modal panel */}
       <div className="relative w-full max-w-lg lg:max-w-3xl xl:max-w-4xl bg-canvas flex flex-col h-[min(680px,90dvh)] lg:h-[min(92dvh,900px)]">
-        {/* Header bar */}
-        <div className="flex items-center justify-between px-5 py-3 border-b-2 border-display bg-canvas shrink-0">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-display ">
+        {/* Header bar — accent-coloured to match project theme */}
+        <div className="flex items-center justify-between px-5 py-3 bg-accent shrink-0">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-inverse">
             Book a Call
           </span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex items-center justify-center h-8 w-8 border-2 border-display text-display hover:bg-display hover:text-inverse transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="flex items-center justify-center h-8 w-8 border-2 border-inverse text-inverse hover:bg-inverse hover:text-accent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse"
           >
             <X className="h-3.5 w-3.5" />
           </button>
