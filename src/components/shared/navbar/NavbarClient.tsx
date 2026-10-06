@@ -7,12 +7,9 @@ import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { NAV_LINKS, NAVBAR_CTA } from './constants'
 import { Logo } from './components/Logo'
 import { MobileDrawer } from './components/MobileDrawer'
+import { openBooking } from '@/lib/booking'
 
-interface NavbarClientProps {
-  bookACallHref: string
-}
-
-export function NavbarClient({ bookACallHref }: NavbarClientProps) {
+export function NavbarClient() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const barRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
@@ -91,19 +88,13 @@ export function NavbarClient({ bookACallHref }: NavbarClientProps) {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {/* <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 border-2 border-display text-xs font-bold uppercase tracking-wider text-display"> */}
-            {/* <span className="h-2 w-2 bg-accent" /> */}
-            {/* <span>{AVAILABILITY_STATUS.label}</span> */}
-            {/* </div> */}
-
-            <a
-              href={bookACallHref}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openBooking()}
               className="hidden sm:inline-flex items-center justify-center bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
             >
               {NAVBAR_CTA.label}
-            </a>
+            </button>
 
             {/* Hamburger → X morphing button */}
             <button
@@ -143,7 +134,7 @@ export function NavbarClient({ bookACallHref }: NavbarClientProps) {
         </SectionContainer>
       </div>
 
-      <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} bookACallHref={bookACallHref} />
+      <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   )
 }

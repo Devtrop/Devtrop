@@ -22,6 +22,7 @@ export function Logo({ className = "", onClick }: LogoProps) {
         height={48}
         className="w-auto h-7 md:h-8 hover:opacity-90 transition-opacity duration-150"
         priority
+        loading="eager"
       />
     </Link>
   );
