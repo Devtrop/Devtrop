@@ -1,20 +1,13 @@
-import { SectionContainer } from "@/components/shared/layout/SectionContainer";
-import { SectionHeading } from "@/components/shared/layout/SectionHeading";
-import { WORK_CONTENT } from "@/data/work";
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { SectionContainer } from '@/components/shared/layout/SectionContainer'
+import { SectionHeading } from '@/components/shared/layout/SectionHeading'
+import { WORK_CONTENT } from '@/data/work'
+import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export function CaseStudies({
-  featuredOnly = false,
-}: {
-  featuredOnly?: boolean;
-}) {
-  const { sectionNumber, sectionLabel, headline, subhead, builds: allBuilds } =
-    WORK_CONTENT;
-  const builds = featuredOnly
-    ? allBuilds.filter((build) => build.featured)
-    : allBuilds;
+export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }) {
+  const { sectionNumber, sectionLabel, headline, subhead, builds: allBuilds } = WORK_CONTENT
+  const builds = featuredOnly ? allBuilds.filter((build) => build.featured) : allBuilds
 
   return (
     <section className="border-b-4 border-display" id="work">
@@ -30,12 +23,12 @@ export function CaseStudies({
           {builds.map((build, i) => (
             <div
               key={build.title}
-              className={`grid grid-cols-1 lg:grid-cols-2 ${i > 0 ? "border-t-2 border-display" : ""}`}
+              className={`grid grid-cols-1 lg:grid-cols-2 ${i > 0 ? 'border-t-2 border-display' : ''}`}
             >
               {/* Visual / Architecture diagram side */}
               <div
                 className={`relative p-8 sm:p-12 bg-subtle swiss-grid-pattern flex items-center justify-center min-h-70 border-b-2 lg:border-b-0 border-display ${
-                  i % 2 === 1 ? "lg:order-2" : "lg:border-r-2"
+                  i % 2 === 1 ? 'lg:order-2' : 'lg:border-r-2'
                 }`}
               >
                 {/* Screenshot of the live build */}
@@ -51,7 +44,9 @@ export function CaseStudies({
               </div>
 
               {/* Content side */}
-              <div className={`p-8 sm:p-12 ${i % 2 === 1 ? "lg:order-1 lg:border-r-2 lg:border-display" : ""}`}>
+              <div
+                className={`p-8 sm:p-12 ${i % 2 === 1 ? 'lg:order-1 lg:border-r-2 lg:border-display' : ''}`}
+              >
                 {/* Category */}
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
                   {build.category}
@@ -61,9 +56,7 @@ export function CaseStudies({
                   {build.title}
                 </h3>
 
-                <p className="mt-2 text-sm text-muted leading-relaxed">
-                  {build.outcome}
-                </p>
+                <p className="mt-2 text-sm text-muted leading-relaxed">{build.outcome}</p>
 
                 {/* Problem & Approach */}
                 <div className="mt-6 space-y-4">
@@ -71,17 +64,13 @@ export function CaseStudies({
                     <span className="text-xs font-black uppercase tracking-wider text-display">
                       The Problem
                     </span>
-                    <p className="mt-1 text-sm text-muted leading-relaxed">
-                      {build.problem}
-                    </p>
+                    <p className="mt-1 text-sm text-muted leading-relaxed">{build.problem}</p>
                   </div>
                   <div>
                     <span className="text-xs font-black uppercase tracking-wider text-display">
                       The Approach
                     </span>
-                    <p className="mt-1 text-sm text-muted leading-relaxed">
-                      {build.approach}
-                    </p>
+                    <p className="mt-1 text-sm text-muted leading-relaxed">{build.approach}</p>
                   </div>
                 </div>
 
@@ -117,7 +106,7 @@ export function CaseStudies({
           <div className="mt-10 flex justify-center">
             <Link
               href="/work"
-              className="inline-flex items-center gap-1.5 border-2 border-display px-6 py-3 text-xs font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-colors duration-150"
+              className="inline-flex items-center gap-1.5 border-2 border-display px-6 py-3 text-xs font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
             >
               See More Projects <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
@@ -125,7 +114,7 @@ export function CaseStudies({
         )}
       </SectionContainer>
     </section>
-  );
+  )
 }
 
-export default CaseStudies;
+export default CaseStudies
