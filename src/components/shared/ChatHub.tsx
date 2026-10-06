@@ -62,16 +62,20 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
     [whatsappHref, contactEmail, defaultMessage]
   )
 
-  // Close on outside click
+  // Close on outside click / tap
   useEffect(() => {
     if (!open) return
-    function handleClickOutside(e: MouseEvent) {
+    function handleOutside(e: MouseEvent | TouchEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('mousedown', handleOutside)
+    document.addEventListener('touchstart', handleOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleOutside)
+      document.removeEventListener('touchstart', handleOutside)
+    }
   }, [open])
 
   // Close on Escape
@@ -85,9 +89,9 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
   }, [open])
 
   return (
-    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div ref={containerRef} className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
       {/* Channel buttons — stacked above main button */}
-      <div className="flex flex-col items-end gap-3" aria-hidden={open ? 'false' : 'true'}>
+      <div className={`flex flex-col items-end gap-3 ${open ? 'pointer-events-auto' : 'pointer-events-none'}`} aria-hidden={open ? 'false' : 'true'}>
         {channels.map((channel, i) => (
           <div
             key={channel.id}
@@ -152,6 +156,7 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
         aria-label={open ? 'Close contact options' : 'Open contact options'}
         aria-expanded={open}
         className="
+          pointer-events-auto
           relative flex items-center justify-center
           w-14 h-14
           bg-obsidian border border-hairline
