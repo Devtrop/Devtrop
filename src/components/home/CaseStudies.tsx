@@ -106,7 +106,7 @@ export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }
           <div className="mt-10 flex justify-center">
             <Link
               href="/work"
-              className="inline-flex items-center gap-1.5 border-2 border-display px-6 py-3 text-xs font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
+              className="inline-flex items-center gap-1.5 border-2 border-display px-6 py-3 text-xs font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
             >
               See More Projects <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>

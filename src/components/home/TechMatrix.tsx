@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { SectionContainer } from "@/components/shared/layout/SectionContainer";
-import { SectionHeading } from "@/components/shared/layout/SectionHeading";
-import { TECH_MATRIX_CONTENT } from "@/data/tech-matrix";
+import { useState } from 'react'
+import { SectionContainer } from '@/components/shared/layout/SectionContainer'
+import { SectionHeading } from '@/components/shared/layout/SectionHeading'
+import { TECH_MATRIX_CONTENT } from '@/data/tech-matrix'
 
 export function TechMatrix() {
-  const { sectionNumber, sectionLabel, headline, subhead, tabs } = TECH_MATRIX_CONTENT;
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const activeTabData = tabs.find((t) => t.id === activeTab) ?? tabs[0];
+  const { sectionNumber, sectionLabel, headline, subhead, tabs } = TECH_MATRIX_CONTENT
+  const [activeTab, setActiveTab] = useState(tabs[0].id)
+  const activeTabData = tabs.find((t) => t.id === activeTab) ?? tabs[0]
 
   return (
     <section className="border-b-4 border-display" id="architecture">
@@ -24,28 +24,33 @@ export function TechMatrix() {
           Tab bar — 2×2 grid on mobile, 4-col on desktop.
           Borders are applied per-cell so no edge ever doubles up.
         */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 border-2 border-display" role="tablist" aria-label="Technology categories">
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 border-2 border-display"
+          role="tablist"
+          aria-label="Technology categories"
+        >
           {tabs.map((tab, i) => (
             <button
               key={tab.id}
               id={`tab-${tab.id}`}
-              type="button"
               role="tab"
               aria-selected={activeTab === tab.id}
               aria-controls={`panel-${tab.id}`}
               onClick={() => setActiveTab(tab.id)}
               className={[
-                "px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors duration-150",
+                'px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors duration-150',
                 // right border: left column on mobile (even), first 3 on desktop
-                i % 2 === 0 ? "border-r-2 border-display" : "",
-                "lg:border-r-0",
-                i < 3 ? "lg:border-r-2 lg:border-display" : "",
+                i % 2 === 0 ? 'border-r-2 border-display' : '',
+                'lg:border-r-0',
+                i < 3 ? 'lg:border-r-2 lg:border-display' : '',
                 // bottom border: top row on mobile (0,1), none on desktop
-                i < 2 ? "border-b-2 border-display lg:border-b-0" : "",
+                i < 2 ? 'border-b-2 border-display lg:border-b-0' : '',
                 activeTab === tab.id
-                  ? "bg-display text-inverse"
-                  : "bg-canvas text-display hover:bg-subtle",
-              ].filter(Boolean).join(" ")}
+                  ? 'bg-display text-inverse'
+                  : 'bg-canvas text-display hover:bg-subtle',
+              ]
+                .filter(Boolean)
+                .join(' ')}
             >
               {tab.label}
             </button>
@@ -64,7 +69,9 @@ export function TechMatrix() {
               <div
                 key={card.tool}
                 className={`group p-6 sm:p-8 hover:bg-accent transition-colors duration-150 ${
-                  i < activeTabData.cards.length - 1 ? "border-b-2 md:border-b-0 md:border-r-2 border-display" : ""
+                  i < activeTabData.cards.length - 1
+                    ? 'border-b-2 md:border-b-0 md:border-r-2 border-display'
+                    : ''
                 }`}
               >
                 <h4 className="text-base font-black uppercase tracking-tight text-display group-hover:text-inverse transition-colors duration-150">
@@ -87,7 +94,7 @@ export function TechMatrix() {
         </div>
       </SectionContainer>
     </section>
-  );
+  )
 }
 
-export default TechMatrix;
+export default TechMatrix

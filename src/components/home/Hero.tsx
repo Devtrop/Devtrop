@@ -45,9 +45,8 @@ export function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               {/* Primary — Calendly booking */}
               <button
-                type="button"
                 onClick={() => openBooking()}
-                className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent cursor-pointer transition-all duration-150 active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
+                className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent cursor-pointer transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
               >
                 {primaryCta.label}
               </button>
@@ -55,7 +54,7 @@ export function Hero() {
               {/* Secondary */}
               <Link
                 href={secondaryCta.href}
-                className="group inline-flex items-center gap-2 px-6 py-4 border-2 border-display text-sm font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
+                className="group inline-flex items-center gap-2 px-6 py-4 border-2 border-display text-sm font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 cursor-pointer touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
               >
                 {secondaryCta.label}
                 <ArrowDown className="h-4 w-4 transition-transform duration-150 group-hover:translate-y-0.5" />

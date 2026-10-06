@@ -183,12 +183,11 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* {AVAILABILITY_STATUS.label} */}
               {/* </div> */}
               <button
-                type="button"
                 onClick={() => {
                   onClose()
                   openBooking()
                 }}
-                className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
+                className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0 touch-manipulation "
               >
                 {NAVBAR_CTA.label}
               </button>

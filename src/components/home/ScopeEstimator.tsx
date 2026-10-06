@@ -27,7 +27,6 @@ export function ScopeEstimator() {
             {ESTIMATOR_PROJECT_TYPES.map((type) => (
               <button
                 key={type}
-                type="button"
                 role="radio"
                 aria-checked={projectType === type}
                 onClick={() => setProjectType(type)}
@@ -52,7 +51,6 @@ export function ScopeEstimator() {
             {ESTIMATOR_SPEEDS.map((s) => (
               <button
                 key={s}
-                type="button"
                 role="radio"
                 aria-checked={speed === s}
                 onClick={() => setSpeed(s)}
@@ -102,7 +100,6 @@ export function ScopeEstimator() {
             </div>
 
             <button
-              type="button"
               onClick={() => {
                 openBooking()
               }}

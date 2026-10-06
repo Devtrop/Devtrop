@@ -148,7 +148,6 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
 
       {/* Main toggle button */}
       <button
-        type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? 'Close contact options' : 'Open contact options'}
         aria-expanded={open}

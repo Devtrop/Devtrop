@@ -87,7 +87,6 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
             Book a Call
           </span>
           <button
-            type="button"
             onClick={onClose}
             aria-label="Close"
             className="flex items-center justify-center h-8 w-8 border-2 border-inverse text-inverse hover:bg-inverse hover:text-accent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse"
