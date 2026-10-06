@@ -1,6 +1,6 @@
 import { Mail } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+import { BookDiscoveryCallButton } from '@/components/shared/BookDiscoveryCallButton'
 import { env } from '@/lib/env'
 
 export function ClosingCta() {
@@ -20,14 +20,7 @@ export function ClosingCta() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={whatsappUrl(WHATSAPP_MESSAGES.discovery)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
-            >
-              Book a Discovery Call
-            </a>
+            <BookDiscoveryCallButton />
             <a
               href={`mailto:${env.GMAIL_INFO}`}
               className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display transition-colors duration-150"

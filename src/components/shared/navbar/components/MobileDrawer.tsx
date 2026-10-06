@@ -4,18 +4,18 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NAV_LINKS, NAVBAR_CTA } from '../constants'
+import { openBooking } from '@/lib/booking'
 
 interface MobileDrawerProps {
   isOpen: boolean
   onClose: () => void
-  bookACallHref: string
 }
 
 const PANEL_DURATION = 400 // ms
 const LINK_STAGGER = 60 // ms
 const LINK_DURATION = 320 // ms
 
-export function MobileDrawer({ isOpen, onClose, bookACallHref }: MobileDrawerProps) {
+export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
@@ -80,6 +80,15 @@ export function MobileDrawer({ isOpen, onClose, bookACallHref }: MobileDrawerPro
         clearTimeout(t)
         window.removeEventListener('keydown', handleKeyDown)
       }
+    } else {
+      // Drawer is closing — move focus out of the panel immediately so
+      // aria-hidden is never applied while a descendant still has focus.
+      if (
+        drawerRef.current &&
+        drawerRef.current.contains(document.activeElement)
+      ) {
+        ;(document.activeElement as HTMLElement).blur()
+      }
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
@@ -116,7 +125,7 @@ export function MobileDrawer({ isOpen, onClose, bookACallHref }: MobileDrawerPro
           transitionDuration: '0s',
           transitionDelay: isOpen ? '0s' : `${PANEL_DURATION}ms`,
         }}
-        aria-hidden={!isOpen}
+        inert={!isOpen ? true : undefined}
       >
         <div
           ref={drawerRef}
@@ -176,15 +185,16 @@ export function MobileDrawer({ isOpen, onClose, bookACallHref }: MobileDrawerPro
               {/* <span className="h-2 w-2 bg-accent" /> */}
               {/* {AVAILABILITY_STATUS.label} */}
               {/* </div> */}
-              <a
-                href={bookACallHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={onClose}
+              <button
+                type="button"
+                onClick={() => {
+                  onClose()
+                  openBooking()
+                }}
                 className="w-full text-center bg-accent px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150"
               >
                 {NAVBAR_CTA.label}
-              </a>
+              </button>
             </div>
           </div>
         </div>

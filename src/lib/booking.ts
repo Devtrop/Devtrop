@@ -10,56 +10,82 @@ declare global {
   interface Window {
     Calendly?: {
       initPopupWidget: (options: { url: string }) => void
+      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void
     }
   }
 }
 
+// Custom event name used to signal CalendlyModal to open
+export const CALENDLY_OPEN_EVENT = 'devtrop:open-calendly'
+
+export interface CalendlyOpenDetail {
+  url: string
+}
+
 let scriptLoadingPromise: Promise<void> | null = null
 
-function loadCalendlyScript(): Promise<void> {
+export function loadCalendlyScript(): Promise<void> {
   if (typeof window === 'undefined') {
     return Promise.reject(new Error('Window not available'))
   }
 
+  // Already loaded — resolve immediately
   if (window.Calendly) {
     return Promise.resolve()
   }
 
-  if (!scriptLoadingPromise) {
-    scriptLoadingPromise = new Promise((resolve, reject) => {
-      const existingScript = document.querySelector<HTMLScriptElement>(
-        'script[src="https://assets.calendly.com/assets/external/widget.js"]'
-      )
+  // Return in-flight promise if we already started loading
+  if (scriptLoadingPromise) {
+    return scriptLoadingPromise
+  }
 
-      if (existingScript) {
-        existingScript.addEventListener('load', () => resolve())
-        existingScript.addEventListener('error', () =>
-          reject(new Error('Failed to load Calendly script'))
-        )
+  scriptLoadingPromise = new Promise((resolve, reject) => {
+    // Inject Calendly CSS (required for initPopupWidget)
+    if (!document.querySelector('link[href*="calendly.com"][rel="stylesheet"]')) {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = 'https://assets.calendly.com/assets/external/widget.css'
+      document.head.appendChild(link)
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    )
+
+    if (existingScript) {
+      // Script tag exists but may have already fired — poll for window.Calendly
+      if (window.Calendly) {
+        resolve()
         return
       }
+      // Still loading — wait for it
+      existingScript.addEventListener('load', () => resolve())
+      existingScript.addEventListener('error', () => reject(new Error('Calendly script failed')))
+      return
+    }
 
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
 
-      const timeout = setTimeout(() => {
-        reject(new Error('Calendly script loading timed out'))
-      }, 5000)
+    const timeout = setTimeout(() => {
+      scriptLoadingPromise = null
+      reject(new Error('Calendly script loading timed out'))
+    }, 8000)
 
-      script.onload = () => {
-        clearTimeout(timeout)
-        resolve()
-      }
+    script.onload = () => {
+      clearTimeout(timeout)
+      resolve()
+    }
 
-      script.onerror = () => {
-        clearTimeout(timeout)
-        reject(new Error('Calendly script failed to load'))
-      }
+    script.onerror = () => {
+      clearTimeout(timeout)
+      scriptLoadingPromise = null
+      reject(new Error('Calendly script failed to load'))
+    }
 
-      document.head.appendChild(script)
-    })
-  }
+    document.head.appendChild(script)
+  })
 
   return scriptLoadingPromise
 }
@@ -82,41 +108,41 @@ function buildMailtoFallback(prefill?: ScopePrefill): string {
   return `mailto:${email}?subject=${subject}&body=${body}`
 }
 
+// Accent color from design tokens — passed to Calendly so the calendar
+// primary color matches the project theme (hex without #)
+const ACCENT_COLOR = 'ff3000'
+
+const CALENDLY_BASE_URL = `${process.env.NEXT_PUBLIC_CALENDLY_URL}`
+
 export async function openBooking(prefill?: ScopePrefill): Promise<void> {
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL
-
-  // Fallback to mailto if no Calendly URL is configured
-  if (!calendlyUrl) {
-    window.location.href = buildMailtoFallback(prefill)
-    return
-  }
-
+  console.log('[openBooking] called', { prefill })
   try {
     await loadCalendlyScript()
+    console.log('[openBooking] script loaded, window.Calendly:', !!window.Calendly)
 
-    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
-      let finalUrl = calendlyUrl
-      if (prefill) {
-        const notes = [
-          prefill.projectType && `Type: ${prefill.projectType}`,
-          prefill.speed && `Speed: ${prefill.speed}`,
-          prefill.estimatedTimeline && `Timeline: ${prefill.estimatedTimeline}`,
-          prefill.squad && `Squad: ${prefill.squad}`,
-          prefill.architecture && `Stack: ${prefill.architecture}`,
-        ]
-          .filter(Boolean)
-          .join(' | ')
-          .slice(0, 500)
+    let finalUrl = CALENDLY_BASE_URL
+    if (prefill) {
+      const notes = [
+        prefill.projectType && `Type: ${prefill.projectType}`,
+        prefill.speed && `Speed: ${prefill.speed}`,
+        prefill.estimatedTimeline && `Timeline: ${prefill.estimatedTimeline}`,
+        prefill.squad && `Squad: ${prefill.squad}`,
+        prefill.architecture && `Stack: ${prefill.architecture}`,
+      ]
+        .filter(Boolean)
+        .join(' | ')
+        .slice(0, 500)
 
-        const separator = finalUrl.includes('?') ? '&' : '?'
-        finalUrl = `${finalUrl}${separator}a1=${encodeURIComponent(notes)}`
-      }
-
-      window.Calendly.initPopupWidget({ url: finalUrl })
-    } else {
-      window.location.href = buildMailtoFallback(prefill)
+      finalUrl = `${finalUrl}&a1=${encodeURIComponent(notes)}`
     }
-  } catch {
+
+    console.log('[openBooking] calling initPopupWidget', { finalUrl })
+    // Use Calendly's own popup — no custom modal wrapper
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({ url: finalUrl })
+    }
+  } catch (err) {
+    console.error('[openBooking] error:', err)
     window.location.href = buildMailtoFallback(prefill)
   }
 }
