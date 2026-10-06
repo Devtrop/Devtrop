@@ -1,9 +1,11 @@
+'use client'
+
 import { ArrowDown } from 'lucide-react'
 import Link from 'next/link'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { HERO_CONTENT } from '@/data/hero'
 import { ScopeEstimator } from './ScopeEstimator'
-import { whatsappUrl, WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+import { openBooking } from '@/lib/booking'
 
 export function Hero() {
   const { headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT
@@ -41,15 +43,14 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              {/* Primary — red, WhatsApp, matches ClosingCta */}
-              <a
-                href={whatsappUrl(WHATSAPP_MESSAGES.discovery)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
+              {/* Primary — Calendly booking */}
+              <button
+                type="button"
+                onClick={() => openBooking()}
+                className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150 cursor-pointer"
               >
                 {primaryCta.label}
-              </a>
+              </button>
 
               {/* Secondary */}
               <Link

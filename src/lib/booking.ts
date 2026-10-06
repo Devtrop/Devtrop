@@ -110,7 +110,6 @@ function buildMailtoFallback(prefill?: ScopePrefill): string {
 
 // Accent color from design tokens — passed to Calendly so the calendar
 // primary color matches the project theme (hex without #)
-const ACCENT_COLOR = 'ff3000'
 
 const CALENDLY_BASE_URL = `${process.env.NEXT_PUBLIC_CALENDLY_URL}`
 

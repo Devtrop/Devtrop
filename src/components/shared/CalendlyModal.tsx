@@ -28,7 +28,11 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
 
     loadCalendlyScript()
       .then(() => {
-        console.log('[CalendlyModal] script loaded', { cancelled, hasEl: !!el, hasCalendly: !!window.Calendly })
+        console.log('[CalendlyModal] script loaded', {
+          cancelled,
+          hasEl: !!el,
+          hasCalendly: !!window.Calendly,
+        })
         if (cancelled || !el || !window.Calendly) return
         console.log('[CalendlyModal] calling initInlineWidget', { url })
         window.Calendly.initInlineWidget({ url, parentElement: el })
@@ -76,12 +80,10 @@ export function CalendlyModal({ url, onClose }: CalendlyModalProps) {
       aria-label="Book a call"
     >
       {/* Modal panel */}
-      <div
-        className="relative w-full max-w-lg lg:max-w-3xl xl:max-w-4xl bg-canvas flex flex-col h-[min(680px,90dvh)] lg:h-[min(92dvh,900px)]"
-      >
+      <div className="relative w-full max-w-lg lg:max-w-3xl xl:max-w-4xl bg-canvas flex flex-col h-[min(680px,90dvh)] lg:h-[min(92dvh,900px)]">
         {/* Header bar */}
         <div className="flex items-center justify-between px-5 py-3 border-b-2 border-display bg-canvas shrink-0">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-display">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-display ">
             Book a Call
           </span>
           <button
