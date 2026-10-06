@@ -158,7 +158,7 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
           bg-obsidian border border-hairline
           hover:bg-accent hover:border-accent
           transition-all duration-200
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 cursor-pointer
         "
       >
         {/* Chat bubble icon — shown when closed */}

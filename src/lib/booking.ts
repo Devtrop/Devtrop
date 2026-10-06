@@ -108,11 +108,14 @@ function buildMailtoFallback(prefill?: ScopePrefill): string {
   return `mailto:${email}?subject=${subject}&body=${body}`
 }
 
-// Accent color from design tokens — passed to Calendly so the calendar
-// primary color matches the project theme (hex without #)
-const ACCENT_COLOR = 'ff3000'
+// Calendly theme params — synced to design tokens in globals.css
+// primary_color = --color-accent-hover (#cc2600) — slightly darker than #ff3000
+//   so Calendly's contrast algorithm scores it as needing white text on selected
+//   states (date chips, time slots, CTA buttons)
+// text_color = --color-body (#1a1a1a), background_color = --color-canvas (#ffffff)
+const CALENDLY_THEME_PARAMS = 'primary_color=E03300&text_color=1a1a1a&background_color=ffffff'
 
-const CALENDLY_BASE_URL = `${process.env.NEXT_PUBLIC_CALENDLY_URL}`
+const CALENDLY_BASE_URL = `${process.env.NEXT_PUBLIC_CALENDLY_URL}?${CALENDLY_THEME_PARAMS}`
 
 export async function openBooking(prefill?: ScopePrefill): Promise<void> {
   console.log('[openBooking] called', { prefill })
