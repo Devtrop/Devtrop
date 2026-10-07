@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/data/site";
+import { WORK_CONTENT } from "@/data/work";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_CONFIG.url;
@@ -23,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...WORK_CONTENT.builds.map((build) => ({
+      url: `${base}/work/${build.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${base}/about`,
       lastModified: new Date(),
