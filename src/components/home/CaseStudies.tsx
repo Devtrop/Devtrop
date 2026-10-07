@@ -58,22 +58,6 @@ export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }
 
                 <p className="mt-2 text-sm text-muted leading-relaxed">{build.outcome}</p>
 
-                {/* Problem & Approach */}
-                <div className="mt-6 space-y-4">
-                  <div>
-                    <span className="text-xs font-black uppercase tracking-wider text-display">
-                      The Problem
-                    </span>
-                    <p className="mt-1 text-sm text-muted leading-relaxed">{build.problem}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs font-black uppercase tracking-wider text-display">
-                      The Approach
-                    </span>
-                    <p className="mt-1 text-sm text-muted leading-relaxed">{build.approach}</p>
-                  </div>
-                </div>
-
                 {/* Stack tags */}
                 <div className="mt-6 flex flex-wrap gap-2">
                   {build.stackTags.map((tag) => (
@@ -87,12 +71,18 @@ export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }
                 </div>
 
                 {/* Links */}
-                <div className="mt-6 flex gap-3">
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href={`/work/${build.slug}`}
+                    className="inline-flex items-center gap-1.5 bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
+                  >
+                    Read Case Study <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
                   <Link
                     href={build.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-colors duration-150"
+                    className="inline-flex items-center gap-1.5 border-2 border-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
                   >
                     Visit Live Site <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
