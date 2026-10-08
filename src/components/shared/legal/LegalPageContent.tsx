@@ -28,12 +28,6 @@ export function LegalPageContent({ document }: LegalPageContentProps) {
 
           <div className="max-w-4xl">
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-2 w-2 bg-accent shrink-0" />
-              <span className="font-mono text-xs uppercase tracking-widest font-black text-muted">
-                {document.eyebrow}
-              </span>
-            </div>
 
             {/* H1 Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-display">

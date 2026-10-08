@@ -4,7 +4,6 @@ import { ServicesGrid } from '@/components/home/ServicesGrid'
 import { ProcessSection } from '@/components/home/ProcessSection'
 import { TechMatrix } from '@/components/home/TechMatrix'
 import { EngagementModels } from '@/components/home/EngagementModels'
-import { EngineeringFaq } from '@/components/home/EngineeringFaq'
 import { ClosingCta } from '@/components/home/ClosingCta'
 
 export const metadata: Metadata = {
@@ -49,7 +48,6 @@ export default function ServicesPage() {
       <ProcessSection />
       <TechMatrix />
       <EngagementModels />
-      <EngineeringFaq />
       <ClosingCta />
     </PageShell>
   )

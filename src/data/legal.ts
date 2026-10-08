@@ -5,7 +5,6 @@ export interface LegalSection {
 }
 
 export interface LegalDocument {
-  eyebrow: string
   title: string
   lastUpdated: string
   summaryBadge: string
@@ -14,7 +13,6 @@ export interface LegalDocument {
 }
 
 export const PRIVACY_POLICY: LegalDocument = {
-  eyebrow: 'LEGAL & COMPLIANCE',
   title: 'PRIVACY POLICY',
   lastUpdated: 'October 2026',
   summaryBadge: 'THE HONESTY STANDARD',
@@ -82,7 +80,6 @@ export const PRIVACY_POLICY: LegalDocument = {
 }
 
 export const TERMS_OF_SERVICE: LegalDocument = {
-  eyebrow: 'CONTRACTUAL TERMS',
   title: 'TERMS OF SERVICE',
   lastUpdated: 'October 2026',
   summaryBadge: 'THE WORKING AGREEMENT',

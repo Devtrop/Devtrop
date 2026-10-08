@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
 import { EngagementModels } from '@/components/home/EngagementModels'
-import { EngineeringFaq } from '@/components/home/EngineeringFaq'
 import { ClosingCta } from '@/components/home/ClosingCta'
 
 export const metadata: Metadata = {
@@ -38,7 +37,6 @@ export default function ContactPage() {
   return (
     <PageShell>
       <EngagementModels />
-      <EngineeringFaq />
       <ClosingCta />
     </PageShell>
   )
