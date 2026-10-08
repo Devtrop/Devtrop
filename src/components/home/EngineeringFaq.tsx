@@ -52,9 +52,6 @@ export function EngineeringFaq({ id = 'faq' }: EngineeringFaqProps) {
                   className="w-full text-left p-6 sm:p-8 flex items-start justify-between gap-4 sm:gap-6 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <div className="flex items-start gap-4 sm:gap-6">
-                    <span className="font-mono text-xs sm:text-sm font-black text-accent tracking-widest pt-0.5 shrink-0">
-                      {item.number}
-                    </span>
                     <h3 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-tight text-display group-hover:text-accent transition-colors duration-150 leading-snug">
                       {item.question}
                     </h3>
@@ -96,7 +93,7 @@ export function EngineeringFaq({ id = 'faq' }: EngineeringFaqProps) {
         <div className="mt-8 p-6 sm:p-8 border-2 border-display bg-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-display">
-              Have a specific technical or architecture question?
+              Still have any questions?
             </p>
             <p className="mt-1 text-xs text-muted">
               We give candid architecture advice even if we don&apos;t work together.

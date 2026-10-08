@@ -55,6 +55,7 @@ export default function HomePage() {
       <CaseStudies featuredOnly />
       <EngineeringFaq />
       <ClosingCta />
+      <EngineeringFaq />
     </PageShell>
   )
 }
