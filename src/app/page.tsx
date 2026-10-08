@@ -53,6 +53,7 @@ export default function HomePage() {
       <ProofBar />
       <ServicesGrid />
       <CaseStudies featuredOnly />
+      <EngineeringFaq />
       <ClosingCta />
       <EngineeringFaq />
     </PageShell>
