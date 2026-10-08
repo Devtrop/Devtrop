@@ -23,7 +23,7 @@ export function ServicesGrid() {
               key={pillar.number}
               className={`group relative p-8 sm:p-10 lg:p-12 transition-colors duration-150 hover:bg-accent ${
                 i % 2 === 0 ? 'md:border-r-2 border-display' : ''
-              } ${i < 2 ? 'border-b-2 border-display' : ''}`}
+              } ${i < pillars.length - 1 ? 'border-b-2 md:border-b-0 border-display' : ''} ${i < 2 ? 'md:border-b-2 border-display' : ''}`}
             >
               {/* Number + Arrow */}
               {/* <div className="flex items-start justify-between mb-6">
