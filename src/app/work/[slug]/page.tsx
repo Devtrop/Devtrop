@@ -45,14 +45,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${build.title} | Case Study`,
     description: build.summary,
+    keywords: [
+      build.title,
+      build.category,
+      `${build.title} case study`,
+      `Devtrop ${build.category.toLowerCase()} project`,
+      ...build.stackTags.map((tag) => `${tag} web application`),
+      'Devtrop case study',
+      'production web app case study',
+      'full-stack engineering portfolio',
+    ],
     alternates: {
       canonical: `${SITE_CONFIG.url}/work/${build.slug}`,
     },
     openGraph: {
-      title: `${build.title} | Case Study`,
+      title: `${build.title} | Case Study — Devtrop`,
       description: build.outcome,
       url: `${SITE_CONFIG.url}/work/${build.slug}`,
       images: [{ url: build.image, width: 1200, height: 750, alt: build.imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${build.title} | Case Study — Devtrop`,
+      description: build.outcome,
+      images: [build.image],
     },
   }
 }
@@ -62,8 +78,22 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const build = WORK_CONTENT.builds.find((b) => b.slug === slug)
   if (!build) notFound()
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.url },
+      { '@type': 'ListItem', position: 2, name: 'Work', item: `${SITE_CONFIG.url}/work` },
+      { '@type': 'ListItem', position: 3, name: build.title, item: `${SITE_CONFIG.url}/work/${build.slug}` },
+    ],
+  }
+
   return (
     <PageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="border-b-4 border-display">
         <SectionContainer className="py-16 lg:py-24">
           {/* Back link */}

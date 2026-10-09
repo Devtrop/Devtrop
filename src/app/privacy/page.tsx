@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
 import { LegalPageContent } from '@/components/shared/legal/LegalPageContent'
 import { PRIVACY_POLICY } from '@/data/legal'
+import { SITE_CONFIG } from '@/data/site'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -12,15 +13,16 @@ export const metadata: Metadata = {
     'software engineering confidentiality',
     'data privacy Devtrop',
     'client IP protection',
+    'web agency data policy',
   ],
   alternates: {
-    canonical: 'https://devtrop.com/privacy',
+    canonical: `${SITE_CONFIG.url}/privacy`,
   },
   openGraph: {
     title: 'Privacy Policy — Devtrop Engineering Studio',
     description:
       'Minimal data collection, zero advertising telemetry, and strict source code confidentiality.',
-    url: 'https://devtrop.com/privacy',
+    url: `${SITE_CONFIG.url}/privacy`,
     images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Devtrop Privacy Policy' }],
   },
   twitter: {
