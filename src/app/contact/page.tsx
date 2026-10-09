@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
 import { EngagementModels } from '@/components/home/EngagementModels'
-import { EngineeringFaq } from '@/components/home/EngineeringFaq'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { SITE_CONFIG } from '@/data/site'
 
@@ -58,7 +57,6 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <EngagementModels />
-      <EngineeringFaq />
       <ClosingCta />
     </PageShell>
   )
