@@ -51,7 +51,7 @@ function SocialPlatformIcon({
 }
 
 export function ContactInquirySection() {
-  const { label, headline, subhead } = CONTACT_PAGE_CONTENT.inquiry
+  const { headline, subhead } = CONTACT_PAGE_CONTENT.inquiry
   const { cards: directCards } = CONTACT_PAGE_CONTENT.directContact
   const { items: socialItems } = CONTACT_PAGE_CONTENT.social
 
@@ -105,13 +105,6 @@ export function ContactInquirySection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* LEFT COLUMN: Editorial & Direct Channels & Social Links */}
           <div className="lg:col-span-5 flex flex-col justify-start">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="h-2 w-2 bg-accent inline-block" />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                {label}
-              </span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-display leading-[0.95]">
               {headline}
             </h2>

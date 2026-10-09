@@ -2,7 +2,7 @@ import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { CONTACT_PAGE_CONTENT } from '@/data/contact'
 
 export function ContactHero() {
-  const { label, headline, subhead } = CONTACT_PAGE_CONTENT.hero
+  const {  headline, subhead } = CONTACT_PAGE_CONTENT.hero
 
   return (
     <section className="relative min-h-[30vh] flex items-center border-b-4 border-display bg-canvas overflow-hidden py-10 sm:py-12 lg:py-14">
@@ -18,14 +18,6 @@ export function ContactHero() {
       </div>
 
       <SectionContainer className="relative z-10 w-full">
-        {/* Eyebrow Label */}
-        <div className="flex items-center gap-2.5 mb-3">
-          <span className="h-2 w-2 bg-accent inline-block" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-muted">
-            {label}
-          </span>
-        </div>
-
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-display leading-[0.95]">
           {headline.replace('DEVTROP', '')}

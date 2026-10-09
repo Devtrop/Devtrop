@@ -38,7 +38,6 @@ export interface ProjectTypeOption {
 
 export const CONTACT_PAGE_CONTENT = {
   hero: {
-    label: 'DIRECT ENGINEERING CHANNEL // 001',
     headline: 'CONTACT DEVTROP',
     headlineWords: ["LET'S", "BUILD", "SOMETHING", "THAT WORKS."],
     accentWordIndex: 1, // "BUILD"
@@ -64,7 +63,6 @@ export const CONTACT_PAGE_CONTENT = {
 
   inquiry: {
     sectionNumber: '01',
-    label: 'START A CONVERSATION',
     headline: "Tell us what you're building.",
     subhead:
       "Give us a little context about your project and we'll get back to you with the right next step.",
