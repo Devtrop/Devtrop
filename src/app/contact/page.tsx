@@ -1,15 +1,23 @@
 import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
-import { EngagementModels } from '@/components/home/EngagementModels'
-import { ClosingCta } from '@/components/home/ClosingCta'
+import { ContactHero } from '@/components/contact/ContactHero'
+import { ContactInquirySection } from '@/components/contact/ContactInquirySection'
+import { ContactFinalCta } from '@/components/contact/ContactFinalCta'
 import { SITE_CONFIG } from '@/data/site'
 
 export const metadata: Metadata = {
-  title: 'Contact — Book a Free Architecture Review',
+  title: "Contact — Let's Build Something That Works",
   description:
-    "Book a free 30-minute architecture review with Devtrop's lead engineer. Direct access, no sales pressure. We give architecture advice even if we don't work together.",
+    'Contact Devtrop, a full-stack web and SaaS engineering studio. Inquire about 0→1 SaaS builds, web platforms, and modernization. Direct engineering conversations, response within 1 business day.',
   keywords: [
     'contact Devtrop',
+    'hire SaaS engineers',
+    'book architecture review',
+    'full-stack engineering studio',
+    'Dhaka Bangladesh software studio',
+    'web platform modernization',
+    '0 to 1 SaaS MVP development',
+    'Devtrop inquiry',
     'hire Devtrop',
     'book a discovery call Devtrop',
     'hire full-stack engineers Bangladesh',
@@ -26,16 +34,17 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.url}/contact`,
   },
   openGraph: {
-    title: 'Talk to the Engineer Who Will Actually Build Your Product — Devtrop',
+    title: "Contact Devtrop — Let's Build Something That Works",
     description:
-      "30-minute architecture review. Direct with the lead engineer. No sales pressure. We give advice even if we don't work together.",
+      'Have a product idea, an existing platform that needs modernization, or a scaling challenge? Talk directly with our engineering team.',
     url: `${SITE_CONFIG.url}/contact`,
     images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Contact Devtrop' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Talk to the Engineer Who Will Actually Build Your Product — Devtrop',
-    description: '30-minute architecture review. Direct with the lead engineer. No sales pressure.',
+    title: "Contact Devtrop — Let's Build Something That Works",
+    description:
+      'Direct engineering conversations. Inquire about 0→1 SaaS, web platforms, and platform modernization.',
     images: ['/og-default.png'],
   },
 }
@@ -56,9 +65,15 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <EngagementModels />
-      <ClosingCta />
+
+      {/* 01: Hero Section */}
+      <ContactHero />
+
+      {/* 02: Inquiry & Engineering Form Section (includes Direct Channels & Social Icons) */}
+      <ContactInquirySection />
+
+      {/* 03: Final Obsidian Closing Banner CTA */}
+      <ContactFinalCta />
     </PageShell>
   )
 }
-

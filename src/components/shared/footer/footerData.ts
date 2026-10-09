@@ -58,7 +58,7 @@ export const FOOTER_AVAILABILITY = {
 export interface SocialLink {
   label: string
   href: string
-  platform: 'facebook' | 'instagram' | 'linkedin'
+  platform: 'facebook' | 'instagram' | 'linkedin' | 'x'
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -77,4 +77,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
     href: 'https://linkedin.com/company/devtrop',
     platform: 'linkedin',
   },
+  {
+    label: 'X',
+    href: 'https://x.com/devtrop',
+    platform: 'x',
+  }
 ]

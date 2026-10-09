@@ -1,4 +1,3 @@
-import { ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { SectionHeading } from '@/components/shared/layout/SectionHeading'
 import { SERVICES_CONTENT } from '@/data/services'

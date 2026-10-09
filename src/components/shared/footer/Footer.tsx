@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { FOOTER_COLUMNS, SOCIAL_LINKS } from './footerData'
+import { FOOTER_COLUMNS, FOOTER_AVAILABILITY, SOCIAL_LINKS } from './footerData'
 import { env } from '@/lib/env'
 
 export function Footer() {
@@ -109,7 +109,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} devtrop
           </p>
 
-          <div className="flex items-center gap-6 text-xs font-medium text-muted">
+          <div className="flex flex-wrap items-center gap-6 text-xs font-medium text-muted">
             <Link href="/privacy" className="hover:text-accent transition-colors duration-150">
               Privacy Policy
             </Link>
@@ -117,6 +117,12 @@ export function Footer() {
             <Link href="/terms" className="hover:text-accent transition-colors duration-150">
               Terms of Service
             </Link>
+          </div>
+
+          {/* Availability */}
+          <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
+            <span className="h-2 w-2 bg-accent" />
+            <span>{FOOTER_AVAILABILITY.label}</span>
           </div>
         </div>
       </SectionContainer>
