@@ -106,10 +106,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
           {/* Header */}
           <header className="mt-8">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-              {build.category}
-            </span>
-            <h1 className="mt-3 text-3xl sm:text-5xl font-black uppercase tracking-tighter text-display leading-[0.95]">
+            <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter text-display leading-[0.95]">
               {build.title}
             </h1>
             <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
@@ -146,16 +143,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
           {/* Case study sections */}
           <div className="mt-12 space-y-10">
-            {build.sections.map((section, i) => (
+            {build.sections.map((section) => (
               <article key={section.heading}>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-xs font-black uppercase tracking-widest text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-display">
-                    {section.heading}
-                  </h2>
-                </div>
+                <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-display">
+                  {section.heading}
+                </h2>
                 <p className="mt-3 max-w-3xl text-sm sm:text-base text-muted leading-relaxed">
                   <LinkedText text={section.body} build={build} />
                 </p>
