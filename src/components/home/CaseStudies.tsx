@@ -6,18 +6,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }) {
-  const { sectionNumber, sectionLabel, headline, subhead, builds: allBuilds } = WORK_CONTENT
+  const { headline, subhead, builds: allBuilds } = WORK_CONTENT
   const builds = featuredOnly ? allBuilds.filter((build) => build.featured) : allBuilds
 
   return (
     <section className="border-b-4 border-display" id="work">
       <SectionContainer className="py-20 lg:py-28">
-        <SectionHeading
-          sectionNumber={sectionNumber}
-          sectionLabel={sectionLabel}
-          headline={headline}
-          subhead={subhead}
-        />
+        <SectionHeading headline={headline} subhead={subhead} />
 
         <div className="border-2 border-display">
           {builds.map((build, i) => (
@@ -45,33 +40,16 @@ export function CaseStudies({ featuredOnly = false }: { featuredOnly?: boolean }
 
               {/* Content side */}
               <div
-                className={`p-8 sm:p-12 ${i % 2 === 1 ? 'lg:order-1 lg:border-r-2 lg:border-display' : ''}`}
+                className={`flex flex-col justify-center p-8 sm:p-12 ${i % 2 === 1 ? 'lg:order-1 lg:border-r-2 lg:border-display' : ''}`}
               >
-                {/* Category */}
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                  {build.category}
-                </span>
-
-                <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tighter text-display leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-display leading-tight">
                   {build.title}
                 </h3>
 
                 <p className="mt-2 text-sm text-muted leading-relaxed">{build.outcome}</p>
 
-                {/* Stack tags */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {build.stackTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 border-2 border-display/20 text-xs font-bold uppercase tracking-wider text-display"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
                 {/* Links */}
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href={`/work/${build.slug}`}
                     className="inline-flex items-center gap-1.5 bg-display px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
