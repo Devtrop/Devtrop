@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { PageShell } from '@/components/shared/layout/PageShell'
-import { ContactHero } from '@/components/contact/ContactHero'
+// import { ContactHero } from '@/components/contact/ContactHero'
 import { ContactInquirySection } from '@/components/contact/ContactInquirySection'
 import { ContactFinalCta } from '@/components/contact/ContactFinalCta'
 import { SITE_CONFIG } from '@/data/site'
@@ -67,7 +67,7 @@ export default function ContactPage() {
       />
 
       {/* 01: Hero Section */}
-      <ContactHero />
+      {/* <ContactHero /> */}
 
       {/* 02: Inquiry & Engineering Form Section (includes Direct Channels & Social Icons) */}
       <ContactInquirySection />

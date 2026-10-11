@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import {
-  ArrowRight,
+  
   ArrowUpRight,
   CheckCircle2,
   RotateCcw,
@@ -10,6 +10,8 @@ import {
   Phone,
   MapPin,
   Clock,
+  Send,
+  MoveUpRight,
 } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { CONTACT_PAGE_CONTENT, type SocialPlatform } from '@/data/contact'
@@ -219,13 +221,14 @@ export function ContactInquirySection() {
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5 text-accent" /> Response within 1 business day
               </span>
-              <button
-                type="button"
-                onClick={() => openBooking()}
-                className="font-bold uppercase tracking-wider text-accent hover:text-display transition-colors cursor-pointer text-left sm:text-right"
-              >
-                Schedule Architecture Call →
-              </button>
+            <button
+  type="button"
+  onClick={() => openBooking()}
+  className="inline-flex items-center gap-1 font-bold uppercase tracking-wider text-accent hover:text-display transition-colors cursor-pointer text-left sm:text-right"
+>
+  <span>Schedule Architecture Call</span>
+  <MoveUpRight className="h-3 w-3 shrink-0" />
+</button>
             </div>
           </div>
 
@@ -401,8 +404,8 @@ export function ContactInquirySection() {
                       disabled={isSubmitting}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent px-8 py-4 text-xs sm:text-sm font-black uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer disabled:opacity-60 active:scale-95 active:translate-y-0.5"
                     >
-                      {isSubmitting ? 'DISPATCHING...' : 'SEND INQUIRY →'}
-                      {!isSubmitting && <ArrowRight className="h-4 w-4" />}
+                      {isSubmitting ? 'DISPATCHING...' : 'SEND INQUIRY'}
+                      {!isSubmitting && <Send  className="h-4 w-4" />}
                     </button>
                   </div>
                 </form>
