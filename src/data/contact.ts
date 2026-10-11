@@ -63,7 +63,7 @@ export const CONTACT_PAGE_CONTENT = {
 
   inquiry: {
     sectionNumber: '01',
-    headline: "Tell us what you're building.",
+    headline: "Tell us what you're building",
     subhead:
       "Give us a little context about your project and we'll get back to you with the right next step.",
     projectTypes: [
@@ -163,8 +163,8 @@ export const CONTACT_PAGE_CONTENT = {
         number: '04',
         name: 'X',
         platform: 'x',
-        href: 'https://x.com/devtrop',
-        handle: '@devtrop',
+        href: 'https://x.com/devtropofficial',
+        handle: '@devtropofficial',
       },
     ] satisfies SocialIndexItem[],
   },

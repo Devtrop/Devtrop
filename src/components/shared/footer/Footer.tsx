@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { FOOTER_COLUMNS, FOOTER_AVAILABILITY, SOCIAL_LINKS } from './footerData'
+import { FOOTER_COLUMNS, SOCIAL_LINKS } from './footerData'
 import { env } from '@/lib/env'
 
 export function Footer() {
@@ -106,7 +106,7 @@ export function Footer() {
         {/* Legal bar */}
         <div className="mt-14 pt-6 border-t-2 border-display flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-muted font-medium tracking-wider">
-            &copy; {new Date().getFullYear()} devtrop
+            &copy; {new Date().getFullYear()} Devtrop. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-6 text-xs font-medium text-muted">
@@ -119,11 +119,6 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Availability */}
-          <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-display text-xs font-bold uppercase tracking-wider text-display">
-            <span className="h-2 w-2 bg-accent" />
-            <span>{FOOTER_AVAILABILITY.label}</span>
-          </div>
         </div>
       </SectionContainer>
     </footer>

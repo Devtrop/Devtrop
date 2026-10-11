@@ -9,19 +9,11 @@ export function ContactHero() {
       {/* Background Swiss grid pattern — signature Devtrop texture */}
       <div className="absolute inset-0 swiss-grid-pattern pointer-events-none opacity-60" />
 
-      {/* Architectural corner registration marks */}
-      <div className="absolute top-3 left-4 hidden sm:block font-mono text-[10px] text-muted/40 uppercase tracking-widest select-none pointer-events-none">
-        + 23.8103° N // 90.4125° E &bull; DHAKA HQ
-      </div>
-      <div className="absolute top-3 right-4 hidden sm:block font-mono text-[10px] text-muted/40 uppercase tracking-widest select-none pointer-events-none">
-        CH-01 // ENGINEERING DIRECT
-      </div>
-
       <SectionContainer className="relative z-10 w-full">
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-display leading-[0.95]">
           {headline.replace('DEVTROP', '')}
-          <span className="text-accent">DEVTROP.</span>
+          <span className="text-accent">DEVTROP</span>
         </h1>
 
         {/* Subhead */}

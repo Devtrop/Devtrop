@@ -102,7 +102,7 @@ export function ContactInquirySection() {
   return (
     <section className="relative border-b-4 border-display bg-canvas" id="inquiry">
       <SectionContainer className="py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-13 items-start">
           {/* LEFT COLUMN: Editorial & Direct Channels & Social Links */}
           <div className="lg:col-span-5 flex flex-col justify-start">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-display leading-[0.95]">
@@ -134,7 +134,7 @@ export function ContactInquirySection() {
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
+                  <ArrowUpRight className="h-5 w-5 shrink-0 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-2" />
                 </a>
               )}
 

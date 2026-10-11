@@ -18,13 +18,6 @@ export function ContactFinalCta() {
 
       <SectionContainer className="relative z-10 py-20 lg:py-28">
         <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-2 mb-6">
-            <span className="h-2 w-2 bg-accent inline-block" />
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-inverse/60">
-              {'Devtrop Studio // Engagement Phase'}
-            </span>
-          </div>
 
           {/* Large Headline */}
           <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">

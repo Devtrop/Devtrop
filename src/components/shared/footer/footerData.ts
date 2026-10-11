@@ -51,9 +51,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   },
 ]
 
-export const FOOTER_AVAILABILITY = {
-  label: 'Booking Q4 2026 starts',
-}
+
 
 export interface SocialLink {
   label: string
@@ -79,7 +77,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'X',
-    href: 'https://x.com/devtrop',
+    href: 'https://x.com/devtropofficial',
     platform: 'x',
   }
 ]
