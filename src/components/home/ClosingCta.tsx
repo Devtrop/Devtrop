@@ -33,9 +33,9 @@ export function ClosingCta() {
           {/* Trust pills */}
           <div className="mt-10 flex flex-wrap gap-4">
             {[
-              'Direct call with the lead engineer',
-              'Mutual NDA before details',
-              "Architecture advice even if we don't work together",
+              'Talk directly with our development team',
+              'Your ideas stay confidential',
+              'Useful advice, even if we don’t work together',
             ].map((pill) => (
               <span
                 key={pill}
