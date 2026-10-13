@@ -1,56 +1,108 @@
 export interface TechCard {
-  tool: string;
-  reason: string;
-  benchmark: string;
+  tool: string
+  reason: string
+  benchmark: string
 }
 
 export interface TechTab {
-  id: string;
-  label: string;
-  cards: TechCard[];
+  id: string
+  label: string
+  cards: TechCard[]
 }
 
 export const TECH_MATRIX_CONTENT = {
-  sectionNumber: "06",
-  sectionLabel: "ARCHITECTURE",
-  headline: "TECHNOLOGY MATRIX",
-  subhead: "Every tool chosen for a reason. Every reason defensible.",
+  sectionNumber: '07',
+  sectionLabel: 'OUR APPROACH',
+  headline: 'THE TECHNOLOGY BEHIND YOUR SUCCESS',
+  subhead:
+    'We choose the right tools to make your website fast, reliable, secure, and ready to grow.',
   tabs: [
     {
-      id: "frontend",
-      label: "Frontend & Edge",
+      id: 'frontend',
+      label: 'Website Experience',
       cards: [
-        { tool: "React Server Components", reason: "Zero-bundle data fetching, streamed UI", benchmark: "Zero client JS for data-only components" },
-        { tool: "Next.js App Router", reason: "Layouts, parallel routes, edge caching", benchmark: "Sub-100ms TTFB on edge-cached routes" },
-        { tool: "TypeScript Strict", reason: "Schema→UI type safety", benchmark: "Zero runtime type errors in production" },
+        {
+          tool: 'Fast, Responsive Websites',
+          reason: 'Pages are designed to load quickly and work smoothly across devices.',
+          benchmark: 'Performance tested across desktop and mobile',
+        },
+        {
+          tool: 'Smooth Navigation',
+          reason: 'Clear layouts and seamless page transitions help visitors find what they need.',
+          benchmark: 'A consistent experience across your website',
+        },
+        {
+          tool: 'Reliable Features',
+          reason: 'Forms, buttons, and interactive features are checked to work as expected.',
+          benchmark: 'Essential features tested before launch',
+        },
       ],
     },
     {
-      id: "backend",
-      label: "Distributed Backend",
+      id: 'backend',
+      label: 'Business Functionality',
       cards: [
-        { tool: "Server Actions", reason: "Colocation, no API-layer drift", benchmark: "Type-safe client↔server with zero boilerplate" },
-        { tool: "Queue-Based Async", reason: "BullMQ/SQS — durability under spikes", benchmark: "Zero dropped jobs under 10× burst load" },
-        { tool: "WebSockets/SSE", reason: "Server-authoritative realtime", benchmark: "Sub-50ms event propagation at p99" },
+        {
+          tool: 'Connected Features',
+          reason: "Your website's forms, accounts, payments, and other features work together.",
+          benchmark: 'Features checked across complete user journeys',
+        },
+        {
+          tool: 'Reliable Processing',
+          reason:
+            'Important tasks can be handled in the background without slowing down the experience.',
+          benchmark: 'Background tasks monitored and tested',
+        },
+        {
+          tool: 'Live Updates',
+          reason: 'Where needed, information can update without users having to refresh the page.',
+          benchmark: 'Real-time features tested for responsiveness',
+        },
       ],
     },
     {
-      id: "database",
-      label: "Databases & Caching",
+      id: 'database',
+      label: 'Data & Security',
       cards: [
-        { tool: "PostgreSQL", reason: "RLS multi-tenancy, transactional integrity", benchmark: "Row-level isolation with zero cross-tenant leaks" },
-        { tool: "Redis", reason: "Sub-ms read layer, rate limiting", benchmark: "Sub-1ms p99 cache reads" },
-        { tool: "Connection Pooling", reason: "pgBouncer, EXPLAIN-driven tuning", benchmark: "Stable connections under 1k+ concurrent queries" },
+        {
+          tool: 'Organized, Reliable Data',
+          reason: 'Business information is stored consistently and handled with care.',
+          benchmark: 'Data handling and access rules reviewed',
+        },
+        {
+          tool: 'Faster Data Access',
+          reason:
+            'Frequently needed information can be delivered faster for a smoother experience.',
+          benchmark: 'Key data operations tested for performance',
+        },
+        {
+          tool: 'Ready for Growth',
+          reason: 'The system is designed to handle increasing activity as your business grows.',
+          benchmark: 'Performance tested against agreed usage needs',
+        },
       ],
     },
     {
-      id: "devops",
-      label: "Cloud & DevOps",
+      id: 'devops',
+      label: 'Hosting & Reliability',
       cards: [
-        { tool: "IaC (Terraform/CDK)", reason: "Reviewable, reproducible environments", benchmark: "Full env provisioned in < 10 minutes" },
-        { tool: "GitHub Actions", reason: "Same pipeline from PR to prod", benchmark: "CI runs < 5 minutes for full suite" },
-        { tool: "Observability Stack", reason: "Prometheus/Grafana/Datadog SLOs", benchmark: "SLOs defined and tracked per engagement" },
+        {
+          tool: 'Reliable Deployment',
+          reason:
+            'Your website can be launched and updated through a consistent, repeatable process.',
+          benchmark: 'Deployment process tested before release',
+        },
+        {
+          tool: 'Safer Updates',
+          reason: 'Changes are reviewed and checked before reaching your live website.',
+          benchmark: 'Automated checks included where appropriate',
+        },
+        {
+          tool: 'Ongoing Monitoring',
+          reason: 'Where included, monitoring helps identify problems and guide improvements.',
+          benchmark: 'Monitoring and performance goals agreed per project',
+        },
       ],
     },
   ] satisfies TechTab[],
-};
+}

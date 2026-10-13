@@ -12,7 +12,7 @@ export const HERO_CONTENT: HeroContent = {
   sectionLabel: 'SYSTEM',
   headlineWords: ['WE', 'ENGINEER', 'SCALABLE', 'WEBSITES'],
   subhead:
-    'From zero-to-one product architectures to high-concurrency cloud systems. We partner with funded startups to ship production-grade website with uncompromising craftsmanship.',
+    'Want a website for your business?? But your budget is a little short! Just book a call for free. May be we could be the right choice.',
   primaryCta: {
     label: 'Book a Discovery Call',
     href: '#contact',
@@ -30,60 +30,63 @@ export interface EstimatorOption {
 }
 
 export const ESTIMATOR_PROJECT_TYPES = [
-  '0-to-1 SaaS MVP',
-  'Platform Modernization',
-  'Scale & Performance',
+  'Build a New Product',
+  'Improve an Existing Website or App',
+  'Make My Website or App Faster',
 ] as const
 
-export const ESTIMATOR_SPEEDS = ['Standard', 'Rapid'] as const
+export const ESTIMATOR_SPEEDS = ['Standard', 'Fast-Track'] as const
 
 export const ESTIMATOR_MATRIX: Record<string, Record<string, EstimatorOption>> = {
-  '0-to-1 SaaS MVP': {
+  'Build a New Product': {
     Standard: {
-      projectType: '0-to-1 SaaS MVP',
+      projectType: 'Build a New Product',
       speed: 'Standard',
       timeline: '6–8 weeks',
-      squad: 'Lead + 2 FE/BE',
-      architecture: 'Next.js 16 + Postgres + Stripe',
+      squad: 'Dedicated Project Team',
+      architecture: 'A complete first version with user accounts, payments, and essential features',
     },
-    Rapid: {
-      projectType: '0-to-1 SaaS MVP',
-      speed: 'Rapid',
+    'Fast-Track': {
+      projectType: 'Build a New Product',
+      speed: 'Fast-Track',
       timeline: '3–4 weeks',
-      squad: 'Lead + 1',
-      architecture: 'Next.js 16 + Supabase, scope-cut to core loop',
+      squad: 'Focused Project Team',
+      architecture: 'A faster launch with only the most important features',
     },
   },
-  'Platform Modernization': {
+  'Improve an Existing Website or App': {
     Standard: {
-      projectType: 'Platform Modernization',
+      projectType: 'Improve an Existing Website or App',
       speed: 'Standard',
       timeline: '6–10 weeks',
-      squad: 'Lead + 2',
-      architecture: 'Incremental migration, zero-downtime cutovers',
+      squad: 'Dedicated Project Team',
+      architecture: 'Gradual improvements while keeping your existing service running',
     },
-    Rapid: {
-      projectType: 'Platform Modernization',
-      speed: 'Rapid',
+    'Fast-Track': {
+      projectType: 'Improve an Existing Website or App',
+      speed: 'Fast-Track',
       timeline: '2–3 weeks',
-      squad: 'Lead',
-      architecture: 'Audit + migration RFC + CI hardening',
+      squad: 'Focused Project Team',
+      architecture:
+        'Review your current setup, plan improvements, and strengthen your development process',
     },
   },
-  'Scale & Performance': {
+  'Make My Website or App Faster': {
     Standard: {
-      projectType: 'Scale & Performance',
+      projectType: 'Make My Website or App Faster',
       speed: 'Standard',
       timeline: '4–6 weeks',
-      squad: 'Lead + 1 perf eng',
-      architecture: 'Caching layer, query tuning, load testing',
+      squad: 'Dedicated Performance Team',
+      architecture:
+        'Improve loading speed, database response times, and performance under heavy traffic',
     },
-    Rapid: {
-      projectType: 'Scale & Performance',
-      speed: 'Rapid',
+    'Fast-Track': {
+      projectType: 'Make My Website or App Faster',
+      speed: 'Fast-Track',
       timeline: '2 weeks',
-      squad: 'Lead',
-      architecture: 'Profiling engagement + prioritized fix PRs',
+      squad: 'Performance Specialist',
+      architecture:
+        'Find the biggest performance problems and fix the highest-priority issues first',
     },
   },
 }

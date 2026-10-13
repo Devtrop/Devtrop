@@ -46,7 +46,7 @@ export function Hero() {
               {/* Primary — Calendly booking */}
               <button
                 onClick={() => openBooking()}
-                className="inline-flex items-center bg-display px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent cursor-pointer transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
+                className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover cursor-pointer transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
               >
                 {primaryCta.label}
               </button>

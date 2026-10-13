@@ -69,13 +69,14 @@ export function AboutContent() {
                 What we do
               </h3>
               <p className="text-sm text-muted leading-relaxed">
-                We engineer scalable web applications and SaaS platforms. Our work spans product
-                design systems, multi-tenant data architectures, real-time pipelines, and
-                public-facing marketing sites built to convert.
+                We build websites and custom web applications that help businesses grow. From your
+                first idea to a complete digital product, we focus on creating useful, reliable, and
+                easy-to-use solutions that work for your business and your customers.
               </p>
               <p className="mt-4 text-sm text-muted leading-relaxed">
-                We don&apos;t take on more clients than we can serve well. Every engagement gets our
-                full attention and a direct line to the engineer writing the code.
+                We take on projects we can give our full attention to. You work directly with the
+                people building your product, with clear communication, regular updates, and a team
+                that cares about getting the details right.
               </p>
             </div>
 
@@ -86,10 +87,10 @@ export function AboutContent() {
               </h3>
               <ul className="space-y-3">
                 {[
-                  'Early-stage startups shipping their first production SaaS',
-                  'Scale-up teams outgrowing their existing architecture',
-                  'Founders who need a technical co-pilot without a full-time hire',
-                  'Agencies that need a reliable engineering subcontractor',
+                  'Startups turning their first big idea into a real product',
+                  'Growing businesses that need a faster, more reliable website or app',
+                  'Founders who need expert development help without hiring a full-time developer',
+                  'Agencies looking for a trusted development partner to help deliver client projects',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-muted">
                     <span className="mt-1.5 h-1.5 w-1.5 bg-accent shrink-0" />
