@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import {
-  
   ArrowUpRight,
   CheckCircle2,
   RotateCcw,
@@ -107,13 +106,11 @@ export function ContactInquirySection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-13 items-start">
           {/* LEFT COLUMN: Editorial & Direct Channels & Social Links */}
           <div className="lg:col-span-5 flex flex-col justify-start">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-display leading-[0.95]">
+            <h2 className="text-4xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-display leading-[0.95]">
               {headline}
             </h2>
 
-            <p className="mt-4 text-base text-muted leading-relaxed max-w-lg">
-              {subhead}
-            </p>
+            <p className="mt-4 text-base text-muted leading-relaxed max-w-lg">{subhead}</p>
 
             {/* DIRECT CHANNELS — Email, Phone/WhatsApp, Address */}
             <div className="mt-8 border-2 border-display bg-canvas divide-y-2 divide-display shadow-[4px_4px_0_0_var(--color-display)]">
@@ -192,11 +189,11 @@ export function ContactInquirySection() {
             <div className="mt-6 p-4 sm:p-5 border-2 border-display bg-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <span className="block font-mono text-xs font-bold uppercase tracking-wider text-display">
-                  Follow Devtrop
+                  Follow Us
                 </span>
-                <span className="block text-xs text-muted mt-0.5">
+                {/* <span className="block text-xs text-muted mt-0.5">
                   Public RFCs &amp; engineering notes
-                </span>
+                </span> */}
               </div>
 
               <div className="flex items-center gap-2">
@@ -217,19 +214,19 @@ export function ContactInquirySection() {
             </div>
 
             {/* Response Time SLA & Fast Track Calendar */}
-            <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-muted pt-4 border-t border-display/20">
+            {/* <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-muted pt-4 border-t border-display/20">
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5 text-accent" /> Response within 1 business day
               </span>
-            <button
-  type="button"
-  onClick={() => openBooking()}
-  className="inline-flex items-center gap-1 font-bold uppercase tracking-wider text-accent hover:text-display transition-colors cursor-pointer text-left sm:text-right"
->
-  <span>Schedule Architecture Call</span>
-  <MoveUpRight className="h-3 w-3 shrink-0" />
-</button>
-            </div>
+              <button
+                type="button"
+                onClick={() => openBooking()}
+                className="inline-flex items-center gap-1 font-bold uppercase tracking-wider text-accent hover:text-display transition-colors cursor-pointer text-left sm:text-right"
+              >
+                <span>Schedule A Call</span>
+                <MoveUpRight className="h-3 w-3 shrink-0" />
+              </button>
+            </div> */}
           </div>
 
           {/* RIGHT COLUMN: Send Email Inquiry Form */}
@@ -247,7 +244,8 @@ export function ContactInquirySection() {
                     Thank you, {fullName || 'there'}.
                   </h3>
                   <p className="mt-3 text-sm text-muted leading-relaxed">
-                    Our engineering team will review your requirements and respond within 1 business day at <span className="font-bold text-display">{workEmail}</span>.
+                    Our engineering team will review your requirements and respond within 1 business
+                    day at <span className="font-bold text-display">{workEmail}</span>.
                   </p>
 
                   {/* Technical Receipt Frame */}
@@ -405,7 +403,7 @@ export function ContactInquirySection() {
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent px-8 py-4 text-xs sm:text-sm font-black uppercase tracking-wider text-inverse hover:bg-accent-hover transition-all duration-150 cursor-pointer disabled:opacity-60 active:scale-95 active:translate-y-0.5"
                     >
                       {isSubmitting ? 'DISPATCHING...' : 'SEND INQUIRY'}
-                      {!isSubmitting && <Send  className="h-4 w-4" />}
+                      {!isSubmitting && <Send className="h-4 w-4" />}
                     </button>
                   </div>
                 </form>

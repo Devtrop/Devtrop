@@ -18,7 +18,6 @@ export function ContactFinalCta() {
 
       <SectionContainer className="relative z-10 py-20 lg:py-28">
         <div className="max-w-3xl">
-
           {/* Large Headline */}
           <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-inverse">
             {parts[0]}
@@ -51,18 +50,18 @@ export function ContactFinalCta() {
           </div>
 
           {/* Technical Trust Guarantee Indicators */}
-          <div className="mt-12 pt-8 border-t border-inverse/20 flex flex-wrap gap-6 text-xs font-mono text-inverse/60">
+          <div className="mt-12 pt-8 border-t border-inverse/20 flex flex-wrap gap-6 text-xs font-medium text-inverse/60">
             <span className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 bg-accent" />
-              Direct Lead Engineer Architecture Review
+              Direct Access to Our Development Team
             </span>
             <span className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 bg-accent" />
-              Mutual NDA Before Technical Disclosure
+              Your Ideas Stay Confidential
             </span>
             <span className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 bg-accent" />
-              Zero Sales Pressure • Actionable Next Steps
+              No Pressure, Just Honest Advice
             </span>
           </div>
         </div>
