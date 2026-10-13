@@ -12,7 +12,7 @@ export const HERO_CONTENT: HeroContent = {
   sectionLabel: 'SYSTEM',
   headlineWords: ['WE', 'ENGINEER', 'SCALABLE', 'WEBSITES'],
   subhead:
-    'Want a website for your business?? But your budget is a little short! Just book a call for free. May be we could be the right choice.',
+    'Need a website for your business?? But your budget is a little short! Just book a call for free. May be we could be the right choice.',
   primaryCta: {
     label: 'Book a Discovery Call',
     href: '#contact',
