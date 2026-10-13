@@ -103,9 +103,9 @@ export function EngineeringFaq({ id = 'faq' }: EngineeringFaqProps) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => openBooking()}
-              className="inline-flex items-center gap-2 bg-display px-5 py-3 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent cursor-pointer transition-colors duration-150"
+              className="inline-flex items-center gap-2 bg-accent px-5 py-3 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover cursor-pointer transition-colors duration-150"
             >
-              <span>Ask Lead Engineer</span>
+              <span>Call for a meeting?</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
             </button>
           </div>

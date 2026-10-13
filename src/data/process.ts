@@ -1,44 +1,64 @@
 export interface ProcessPhase {
-  number: string;
-  title: string;
-  timeline: string;
-  narrative: string;
-  deliverables: string[];
+  number: string
+  title: string
+  timeline: string
+  narrative: string
+  deliverables: string[]
 }
 
 export const PROCESS_CONTENT = {
-  sectionNumber: "05",
-  sectionLabel: "PROCESS",
-  headline: "ENGINEERING STANDARD",
-  subhead: "Four phases. Every engagement. No shortcuts.",
+  sectionNumber: '06',
+  sectionLabel: 'HOW WE WORK',
+  headline: 'FROM IDEA TO LAUNCH',
+  subhead: 'A clear process, regular updates, and no surprises along the way.',
   phases: [
     {
-      number: "01",
-      title: "Technical Specification & Architecture RFC",
-      timeline: "Sprint 0 — Week 1",
-      narrative: "Blueprints, ERDs, API contracts before production code.",
-      deliverables: ["Signed-off RFC", "Sprint backlog", "Design tokens"],
+      number: '01',
+      title: 'Planning & Strategy',
+      timeline: 'Week 1',
+      narrative:
+        'We learn about your business, understand your goals, and agree on what to build before development begins.',
+      deliverables: [
+        'A clear project plan',
+        'Agreed features and priorities',
+        'A design direction for your project',
+      ],
     },
     {
-      number: "02",
-      title: "Bi-Weekly Agile Deployments",
-      timeline: "Weeks 2–8",
-      narrative: "Working features on live staging URLs every 14 days + recorded walkthroughs.",
-      deliverables: ["Staging URLs", "Loom walkthroughs", "Retro summaries"],
+      number: '02',
+      title: 'Building Your Product',
+      timeline: 'Throughout Development',
+      narrative:
+        'We bring your ideas to life and share working previews so you can see the progress and give feedback along the way.',
+      deliverables: [
+        'Working previews of your website or app',
+        'Regular progress updates',
+        'Opportunities to review and share feedback',
+      ],
     },
     {
-      number: "03",
-      title: "Automated Testing & Security Gates",
-      timeline: "Continuous",
-      narrative: "Playwright E2E, Vitest coverage, static analysis on every PR.",
-      deliverables: ["Passing gates", "Zero critical vulns", "Audit reports"],
+      number: '03',
+      title: 'Testing & Refinement',
+      timeline: 'Throughout Development',
+      narrative:
+        'We check that everything works as expected, fix problems, and refine the experience before your product goes live.',
+      deliverables: [
+        'Feature and functionality checks',
+        'Bug fixes and improvements',
+        'Final quality checks before launch',
+      ],
     },
     {
-      number: "04",
-      title: "Production Handoff & Hyper-Care",
-      timeline: "Launch + 30 days",
-      narrative: "IP transfer, docs, team onboarding, 30-day support.",
-      deliverables: ["Repo transfer", "Architecture docs", "30-day warranty"],
+      number: '04',
+      title: 'Launch & Ongoing Support',
+      timeline: 'Launch Day & Beyond',
+      narrative:
+        'We help get your product online, hand over the necessary files and access, and provide support according to your agreement.',
+      deliverables: [
+        'Your website or app launched online',
+        'Project files and handover documentation',
+        'Post-launch support as agreed',
+      ],
     },
   ] satisfies ProcessPhase[],
-};
+}
