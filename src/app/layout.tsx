@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { Navbar } from '@/components/shared/navbar/Navbar'
 import { Footer } from '@/components/shared/footer/Footer'
@@ -237,6 +238,20 @@ export default function RootLayout({
           contactEmail={SITE_CONFIG.contactEmail}
           defaultMessage={WHATSAPP_MESSAGES.default}
         />
+
+        {/* Google Analytics — loaded after page is interactive, zero LCP impact */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-K3MJP3307F"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-K3MJP3307F');
+          `}
+        </Script>
       </body>
     </html>
   )
