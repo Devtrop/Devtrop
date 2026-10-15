@@ -6,6 +6,7 @@ import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { HERO_CONTENT } from '@/data/hero'
 import { ScopeEstimator } from './ScopeEstimator'
 import { openBooking } from '@/lib/booking'
+import { trackEvent } from '@/lib/analytics'
 
 export function Hero() {
   const { headlineWords, subhead, primaryCta, secondaryCta } = HERO_CONTENT
@@ -45,7 +46,10 @@ export function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               {/* Primary — Calendly booking */}
               <button
-                onClick={() => openBooking()}
+                onClick={() => {
+                  trackEvent('book_call_click', { link_location: 'hero' })
+                  openBooking()
+                }}
                 className="inline-flex items-center bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover cursor-pointer transition-all duration-150 touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
               >
                 {primaryCta.label}
@@ -54,6 +58,7 @@ export function Hero() {
               {/* Secondary */}
               <Link
                 href={secondaryCta.href}
+                onClick={() => trackEvent('nav_click', { destination: 'work', link_location: 'hero' })}
                 className="group inline-flex items-center gap-2 px-6 py-4 border-2 border-display text-sm font-bold uppercase tracking-wider text-display hover:bg-display hover:text-inverse transition-all duration-150 cursor-pointer touch-manipulation active:scale-95 active:translate-y-0.5 md:active:scale-100 md:active:translate-y-0"
               >
                 {secondaryCta.label}
