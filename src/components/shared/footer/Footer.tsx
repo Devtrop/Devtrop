@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
-import { FOOTER_COLUMNS, SOCIAL_LINKS } from './footerData'
+import { FOOTER_COLUMNS } from './footerData'
+import { FooterContactLinks } from './FooterContactLinks'
 import { env } from '@/lib/env'
 
 export function Footer() {
@@ -35,35 +36,9 @@ export function Footer() {
               uncompromising craftsmanship for ambitious teams.
             </p>
 
-            {/* Contact */}
+            {/* Contact & Social */}
             <div className="mt-6 flex flex-col gap-3">
-              <Link
-                href={`mailto:${gmail}`}
-                className="inline-flex items-center gap-2 text-sm text-display font-medium hover:text-accent transition-colors duration-150"
-              >
-                <Mail className="h-4 w-4" />
-                <span>{gmail}</span>
-              </Link>
-            </div>
-
-            {/* Social Links */}
-            <div className="mt-6 flex items-center gap-4">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.platform}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={social.label}
-                >
-                  <Image
-                    src={`/icons/${social.platform}.svg`}
-                    alt={social.label}
-                    width={20}
-                    height={20}
-                  />
-                </a>
-              ))}
+              <FooterContactLinks email={gmail} />
             </div>
           </div>
 

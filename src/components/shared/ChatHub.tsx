@@ -13,6 +13,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import Image from 'next/image'
+import { trackEvent } from '@/lib/analytics'
 
 interface ChatHubProps {
   whatsappHref: string
@@ -129,6 +130,7 @@ export default function ChatHub({ whatsappHref, contactEmail, defaultMessage }: 
               rel={channel.isExternal ? 'noopener noreferrer' : undefined}
               aria-label={`Contact us on ${channel.label}`}
               tabIndex={open ? 0 : -1}
+              onClick={() => trackEvent('chat_hub_click', { channel: channel.id })}
               className="
                 flex items-center justify-center
                 w-14 h-14

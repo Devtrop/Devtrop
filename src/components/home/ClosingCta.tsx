@@ -1,6 +1,7 @@
 import { Mail } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { BookDiscoveryCallButton } from '@/components/shared/BookDiscoveryCallButton'
+import { ClosingCtaEmailLink } from '@/components/home/ClosingCtaEmailLink'
 import { env } from '@/lib/env'
 
 export function ClosingCta() {
@@ -20,14 +21,8 @@ export function ClosingCta() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <BookDiscoveryCallButton />
-            <a
-              href={`mailto:${env.GMAIL_INFO}`}
-              className="inline-flex items-center gap-2 px-6 py-4 border-2 border-inverse/30 text-sm font-bold uppercase tracking-wider text-inverse hover:bg-inverse hover:text-display duration-150 transition-all cursor-pointer active:scale-95 active:translate-y-1 md:active:scale-100 md:active:translate-y-0"
-            >
-              <Mail className="h-4 w-4" />
-              Email Founders Directly
-            </a>
+            <BookDiscoveryCallButton location="closing_cta" />
+            <ClosingCtaEmailLink email={env.GMAIL_INFO} />
           </div>
 
           {/* Trust pills */}
@@ -35,7 +30,7 @@ export function ClosingCta() {
             {[
               'Talk directly with our development team',
               'Your ideas stay confidential',
-              'Useful advice, even if we don’t work together',
+              'Useful advice, even if we don&apos;t work together',
             ].map((pill) => (
               <span
                 key={pill}

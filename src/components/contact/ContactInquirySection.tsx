@@ -1,20 +1,28 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  RotateCcw,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  MoveUpRight,
-} from 'lucide-react'
+import { ArrowUpRight, CheckCircle2, RotateCcw, Mail, Phone, MapPin, Send } from 'lucide-react'
 import { SectionContainer } from '@/components/shared/layout/SectionContainer'
 import { CONTACT_PAGE_CONTENT, type SocialPlatform } from '@/data/contact'
 import { openBooking } from '@/lib/booking'
+
+/**
+ * GA4 CTA tracking helper.
+ * NOTE: This relies on the existing gtag setup in src/app/layout.tsx.
+ * Do not add a second Google Analytics script here.
+ */
+function trackGA4Event(eventName: string, params?: Record<string, string>) {
+  if (typeof window === 'undefined') return
+
+  const gtag = (
+    window as Window & {
+      gtag?: (command: 'event', eventName: string, params?: Record<string, string>) => void
+    }
+  ).gtag
+
+  // Optional chaining prevents errors if GA4 has not loaded yet.
+  gtag?.('event', eventName, params)
+}
 
 function SocialPlatformIcon({
   platform,
@@ -80,6 +88,10 @@ export function ContactInquirySection() {
     e.preventDefault()
     setIsSubmitting(true)
 
+    // IMPORTANT: This handler currently simulates submission; it does not send
+    // the inquiry to an API/email service. Do NOT fire `generate_lead` here yet.
+    // Add `generate_lead` only after the real backend confirms successful delivery.
+
     // Simulate reliable engineering dispatch
     setTimeout(() => {
       const receiptId = `DEV-${Math.floor(100000 + Math.random() * 900000)}`
@@ -115,9 +127,15 @@ export function ContactInquirySection() {
             {/* DIRECT CHANNELS — Email, Phone/WhatsApp, Address */}
             <div className="mt-8 border-2 border-display bg-canvas divide-y-2 divide-display shadow-[4px_4px_0_0_var(--color-display)]">
               {/* Email */}
+              {/* GA4: track clicks on the contact email link. */}
               {emailCard && (
                 <a
                   href={emailCard.href}
+                  onClick={() =>
+                    trackGA4Event('email_click', {
+                      link_location: 'contact_page',
+                    })
+                  }
                   className="group p-4 sm:p-4.5 flex items-center justify-between hover:bg-display transition-colors duration-150"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
@@ -138,9 +156,16 @@ export function ContactInquirySection() {
               )}
 
               {/* Phone / WhatsApp */}
+              {/* GA4: distinguish WhatsApp links from ordinary phone links. */}
               {phoneCard && (
                 <a
                   href={phoneCard.href}
+                  onClick={() => {
+                    const isWhatsApp = /whatsapp|wa\.me/i.test(phoneCard.href)
+                    trackGA4Event(isWhatsApp ? 'whatsapp_click' : 'phone_click', {
+                      link_location: 'contact_page',
+                    })
+                  }}
                   target="_blank"
                   rel="noreferrer"
                   className="group p-4 sm:p-4.5 flex items-center justify-between hover:bg-display transition-colors duration-150"
@@ -276,9 +301,15 @@ export function ContactInquirySection() {
 
                   {/* Next Actions */}
                   <div className="mt-8 flex flex-wrap gap-4">
+                    {/* GA4: track the Book a Call CTA before opening the booking flow. */}
                     <button
                       type="button"
-                      onClick={() => openBooking()}
+                      onClick={() => {
+                        trackGA4Event('book_call_click', {
+                          link_location: 'contact_success_state',
+                        })
+                        openBooking()
+                      }}
                       className="inline-flex items-center justify-center bg-accent px-6 py-3 text-xs font-bold uppercase tracking-wider text-inverse hover:bg-accent-hover transition-colors duration-150 cursor-pointer"
                     >
                       Book Accompanying Call →
