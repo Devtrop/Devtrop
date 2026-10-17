@@ -5,7 +5,6 @@
  * Strictly adheres to Devtrop's Swiss-international typographic style,
  * editorial engineering voice, and honesty standard.
  */
-
 export interface ContactMetadataPill {
   label: string
   value: string
@@ -39,7 +38,7 @@ export interface ProjectTypeOption {
 export const CONTACT_PAGE_CONTENT = {
   hero: {
     headline: 'CONTACT DEVTROP',
-    headlineWords: ["LET'S", "BUILD", "SOMETHING", "THAT WORKS."],
+    headlineWords: ["LET'S", 'BUILD', 'SOMETHING', 'THAT WORKS.'],
     accentWordIndex: 1, // "BUILD"
     subhead:
       'Have a product idea, an existing platform that needs modernization, or a scaling challenge? Talk directly with our engineering team.',
@@ -105,13 +104,13 @@ export const CONTACT_PAGE_CONTENT = {
     cards: [
       {
         label: 'EMAIL',
-        title: 'info.devtrop@gmail.com',
-        href: 'mailto:info.devtrop@gmail.com',
+        title: 'hello@devtrop.com',
+        href: 'mailto:hello@devtrop.com',
         detail: 'Direct engineering inbox',
       },
       {
         label: 'PHONE / WHATSAPP',
-        title: '+880 1897208737',
+        title: '8801897208737',
         href: 'https://wa.me/8801897208737',
         isExternal: true,
         detail: 'Voice & instant messaging',

@@ -59,15 +59,29 @@ function SocialPlatformIcon({
   }
 }
 
-export function ContactInquirySection() {
+export function ContactInquirySection({
+  email,
+  whatsapp,
+}: {
+  email?: string
+  whatsapp?: string
+}) {
   const { headline, subhead } = CONTACT_PAGE_CONTENT.inquiry
   const { cards: directCards } = CONTACT_PAGE_CONTENT.directContact
   const { items: socialItems } = CONTACT_PAGE_CONTENT.social
 
   // Filter direct contact channels: email, phone/whatsapp, and location/address
-  const emailCard = directCards.find((c) => c.label === 'EMAIL')
-  const phoneCard = directCards.find((c) => c.label === 'PHONE / WHATSAPP')
+  const rawEmailCard = directCards.find((c) => c.label === 'EMAIL')
+  const rawPhoneCard = directCards.find((c) => c.label === 'PHONE / WHATSAPP')
   const locationCard = directCards.find((c) => c.label === 'LOCATION')
+
+  // Override with server-injected real values when provided
+  const emailCard = rawEmailCard && email
+    ? { ...rawEmailCard, title: email, href: `mailto:${email}` }
+    : rawEmailCard
+  const phoneCard = rawPhoneCard && whatsapp
+    ? { ...rawPhoneCard, title: whatsapp, href: `https://wa.me/${whatsapp}` }
+    : rawPhoneCard
 
   // Form State
   const [fullName, setFullName] = useState('')

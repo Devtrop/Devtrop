@@ -91,7 +91,7 @@ export function loadCalendlyScript(): Promise<void> {
 }
 
 function buildMailtoFallback(prefill?: ScopePrefill): string {
-  const email = 'info.devtrop@gmail.com'
+  const email = 'hello@devtrop.com'
   const subject = encodeURIComponent('Discovery Call & Architecture Review')
   const lines: string[] = ['Hello Devtrop Team,\n\nI would like to schedule a discovery call.']
 

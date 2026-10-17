@@ -4,6 +4,7 @@ import { PageShell } from '@/components/shared/layout/PageShell'
 import { ContactInquirySection } from '@/components/contact/ContactInquirySection'
 import { ContactFinalCta } from '@/components/contact/ContactFinalCta'
 import { SITE_CONFIG } from '@/data/site'
+import { env } from '@/lib/env'
 
 export const metadata: Metadata = {
   title: "Contact — Let's Build Something That Works",
@@ -70,7 +71,7 @@ export default function ContactPage() {
       {/* <ContactHero /> */}
 
       {/* 02: Inquiry & Engineering Form Section (includes Direct Channels & Social Icons) */}
-      <ContactInquirySection />
+      <ContactInquirySection email={env.GMAIL_INFO} whatsapp={env.WHATSAPP} />
 
       {/* 03: Final Obsidian Closing Banner CTA */}
       <ContactFinalCta />
