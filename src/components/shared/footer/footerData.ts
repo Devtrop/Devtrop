@@ -46,12 +46,10 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'Working Agreement', href: '/#engagement' },
       { label: 'Honesty Standard', href: '/#architecture' },
       { label: 'Founder Discovery Call', href: '/#contact' },
-      { label: 'Direct Email', href: 'mailto:info.devtrop@gmail.com' },
+      { label: 'Direct Email', href: `mailto:hello@devtrop.com` },
     ],
   },
 ]
-
-
 
 export interface SocialLink {
   label: string
@@ -79,5 +77,5 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'X',
     href: 'https://x.com/devtropofficial',
     platform: 'x',
-  }
+  },
 ]

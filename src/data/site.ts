@@ -14,6 +14,6 @@ export const SITE_CONFIG: SiteConfig = {
   description:
     'We engineer scalable web applications and SaaS platforms for ambitious teams. Production-grade website with uncompromising craftsmanship.',
   url: 'https://devtrop.com',
-  contactEmail: 'info.devtrop@gmail.com',
+  contactEmail: 'hello@devtrop.com',
   availability: 'Available for new projects',
 }

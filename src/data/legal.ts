@@ -73,7 +73,7 @@ export const PRIVACY_POLICY: LegalDocument = {
       number: '07',
       title: 'Contact for Privacy Matters',
       content: [
-        'If you have questions regarding this Privacy Policy, your rights, or our security practices, contact our lead engineering team directly at info.devtrop@gmail.com.',
+        'If you have questions regarding this Privacy Policy, your rights, or our security practices, contact our lead engineering team directly at hello@devtrop.com.',
       ],
     },
   ],
@@ -156,7 +156,7 @@ export const TERMS_OF_SERVICE: LegalDocument = {
       title: 'Governing Law & Inquiries',
       content: [
         'These terms and individual Statements of Work are governed by commercial contract laws agreed upon in your engagement agreement.',
-        'For contractual inquiries or to request a tailored Master Services Agreement (MSA), email info.devtrop@gmail.com.',
+        'For contractual inquiries or to request a tailored Master Services Agreement (MSA), email hello@devtrop.com.',
       ],
     },
   ],
